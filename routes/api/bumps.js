@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bumpCtrl = require('../../controllers/api/bumps');
+// const bumpCtrl = require('../../controllers/api/bumps');
 
 // write your routes here
 

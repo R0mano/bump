@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var favicon = require('serve-favicon');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 
 require('./config/database');
 
-var bumpRouter = require('./routes/api/bumps');
+const bumpRouter = require('./routes/api/bumps');
 
-var app = express();
+const app = express();
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger('dev'));
