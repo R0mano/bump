@@ -3,6 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
+require('dotenv').config();
 require('./config/database');
 
 const bumpRouter = require('./routes/api/bumps');

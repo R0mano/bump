@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 mongoose.connect(
-  'mongodb://localhost:27017/bumps',
+  'mongodb://localhost:27017/bumpsdb',
   { useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
