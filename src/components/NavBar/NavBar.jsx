@@ -30,7 +30,7 @@ function NavBar(props) {
       <p>This is the NavBar</p>
       <NavLink exct to='/profile'>Profile</ NavLink>
       <NavLink exact to='/chat'>Chat</ NavLink>
-      <NavLink exact to='/add'>Add Contact</ NavLink>
+      <NavLink exact to='/contacts'>Contacts</ NavLink>
       {/* Put the logout link at the bottom of profile page */}
       {/* <NavLink to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</NavLink> */}
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

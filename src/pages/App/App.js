@@ -3,10 +3,9 @@ import { Link, Redirect, Route, Switch } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
-import MainPage from "../MainPage/MainPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import ChatPage from "../ChatPage/ChatPage";
-import AddContactPage from "../AddContactPage/AddContactPage";
+import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
@@ -104,9 +103,9 @@ function App() {
         />
         <Route
           exact
-          path="/add"
+          path="/contacts"
           render={({ history }) => (
-            <AddContactPage
+            <ContactPage
               history={history}
               handleAddContact={handleAddContact}
               user={user}
@@ -117,7 +116,7 @@ function App() {
       </Switch>
       {
         <Route exact path="/">
-          {user ? <ChatPage user={user} profile={profile} handleLogout={handleLogout}/> : <Redirect to='/login' />}
+          {user ? <ContactPage user={user} profile={profile} /> : <Redirect to='/login' />}
         </Route>
       }
     </div>

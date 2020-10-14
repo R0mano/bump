@@ -1,10 +1,11 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import AddContactForm from '../../components/AddContactForm/AddContactForm';
+import ContactList from '../../components/ContactList/ContactList';
 
-export default AddContactPage;
+export default ContactPage;
 
-function AddContactPage(props) {
+function ContactPage(props) {
 
   let page = props.profile ?
   <div>
@@ -23,9 +24,10 @@ function AddContactPage(props) {
   return(
     <div>
       <NavBar user={props.user} profile={props.profile}/>
-      <h1>This is the AddConctPage</h1>
+      <h1>This is the ContactPage</h1>
       {page}
       <AddContactForm handleAddContact={props.handleAddContact} profile={props.profile}/>
+      <ContactList profile={props.profile}/>
     </div>
   )
 }

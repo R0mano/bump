@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import MessageHistory from '../../components/MessageHistory/MessageHistory';
+import NewMessageForm from '../../components/NewMessageForm/NewMessageForm';
 
 export default 
 
@@ -23,6 +25,8 @@ function ChatPage(props) {
       <NavBar user={props.user} profile={props.profile}/>
       <h1>This is the ChatPage</h1>
       {page}
+      <MessageHistory/>
+      <NewMessageForm/>
     </div>
   )
 }
