@@ -6,7 +6,7 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 
-const bumpRouter = require('./routes/api/bumps');
+const profileRouter = require('./routes/api/profiles');
 
 const app = express();
 
@@ -15,8 +15,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
-// api routes must be before the "catch all" route
-app.use('/api', bumpRouter);
+// Put API routes here, before the "catch all" route
+app.use('/api/users', require('./routes/api/users'));
+// Mount the Auth middleware that processes JWTs token
+app.use(require('./config/auth'));
+app.use('/api/profiles', profileRouter);
 
 // "catch all" route
 app.get('/*', function(req, res) {

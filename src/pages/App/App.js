@@ -1,13 +1,125 @@
-import React, {Component} from 'react';
-import { Route } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
-import './App.css';
+import React, { Component, useState, useEffect } from "react";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
+import LoginPage from "../LoginPage/LoginPage";
+import SignupPage from "../SignupPage/SignupPage";
+import MainPage from "../MainPage/MainPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
+import ChatPage from "../ChatPage/ChatPage";
+import AddContactPage from "../AddContactPage/AddContactPage";
+import userService from "../../utils/userService";
+import profileService from "../../utils/profileService";
+import "./App.css";
+import { PromiseProvider } from "mongoose";
+// import ProfilePage from "../ProfilePage/ProfilePage";
 
 function App() {
+  const [user, setUser] = useState(userService.getUser());
+  const [profile, setProfile] = useState(null);
+
+  useEffect( () => {
+    if (user) {
+      console.log('hitting useEffect', user);
+      profileService.getProfile(user._id)
+      .then(data => {
+        console.log(data, 'this is the data');
+        setProfile(data);
+      });
+    } else {
+      setProfile(null);
+    }
+    return () => {
+      console.log('profile loaded');
+    }
+  }, [user]);
+
+  function handleLogout() {
+    userService.logout();
+    setUser(null);
+  }
+
+  const handleSignupOrLogin = () => {
+    // console.log(user, 'this is the user in handleSignupOrLogin------------------------------------------------------------------------------');
+    setUser(userService.getUser());
+    // console.log(user, "this is the user in handleSignupOrLogin");
+  };
+
+  const handleAddContact = async (newContactData) => {
+    // console.log(newContactData, 'newContactData------');
+    
+    const newContact = await profileService.addNewContact(newContactData);
+    console.log(newContact, 'the new contact');
+    setProfile(newContact);
+    console.log(profile, ' The brand new Profile State');
+    // () => PromiseProvider.history.push('/')
+  }
+
+
   return (
-    <div>
-      <NavBar/>
-      <h1>hello world</h1>
+    <div className="landing-page">
+      <Switch>
+        <Route
+          exact
+          path="/signup"
+          render={({ history }) => (
+            <SignupPage
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={({ history }) => (
+            <LoginPage
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={({ history }) => (
+            <ProfilePage
+              history={history}
+              handleLogout={handleLogout}
+              user={user}
+              profile={profile}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/chat"
+          render={({ history }) => (
+            <ChatPage
+              history={history}
+              // handleLogout={handleLogout}
+              user={user}
+              profile={profile}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/add"
+          render={({ history }) => (
+            <AddContactPage
+              history={history}
+              handleAddContact={handleAddContact}
+              user={user}
+              profile={profile}
+            />
+          )}
+        />
+      </Switch>
+      {
+        <Route exact path="/">
+          {user ? <ChatPage user={user} profile={profile} handleLogout={handleLogout}/> : <Redirect to='/login' />}
+        </Route>
+      }
     </div>
   );
 }
