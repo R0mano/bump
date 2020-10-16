@@ -58,7 +58,6 @@ function App() {
     const formData = {...messages, ...{
       from: profile._id,
       body: e.target.value,
-      
     }
   }
     setMessages(formData);

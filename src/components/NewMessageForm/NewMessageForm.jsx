@@ -18,8 +18,8 @@ function NewMessageForm(props) {
       <h4>this is the NewMessageForm component</h4>
       <div>
       <form action="">
-        <input type="text" name="body" onChange={() => props.handleMessageBodyChange(e)}/>
-        <button type="submit" onClick={() => props.handleMessageSubmit(e)}>Send</button>
+        <input type="text" name="body" onChange={() => props.handleMessageBodyChange()}/>
+        <button type="submit" onClick={() => props.handleMessageSubmit()}>Send</button>
       </form>
       </div>
     </div>
