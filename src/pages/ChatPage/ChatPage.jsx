@@ -32,6 +32,7 @@ function ChatPage(props) {
       profile={props.profile}
       messages={props.messages}
       handleMessageSubmit={props.handleMessageSubmit}
+      recipient={props.recipient}
       />
 
       <NewMessageForm

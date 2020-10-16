@@ -13,13 +13,17 @@ function NewMessageForm(props) {
     await props.handleMessageSubmit(e);
   }
 
+  function isValid() {
+    return !(props.messages.from && props.messages.to && props.messages.body.length)
+  }
+
   return(
     <div>
       <h4>this is the NewMessageForm component</h4>
       <div>
       <form action="">
         <input type="text" name="body" value={props.messages.body} onChange={handleChange}/>
-        <button type="submit" onClick={handleSubmit}>Send</button>
+        <button type="submit" disabled={isValid()} onClick={handleSubmit}>Send</button>
       </form>
       </div>
     </div>

@@ -10,9 +10,10 @@ function MessageHistory(props) {
   let messageHistory = (props.profile && props.messages) ?
   <div>
 
-    {props.messages.chat.map(message =>
+    {props.messages.chat.filter((msg) => msg.to === props.messages.to).map(message =>
        <MessageHistoryItem
-       message={message}          
+       message={message}
+       recipient={props.recipient}
        />
     )}
 </div>

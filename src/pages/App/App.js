@@ -20,6 +20,7 @@ function App() {
   const [profile, setProfile] = useState(null);
   const [messages, setMessages] = useState({chat: [], from: '', to: '', body: '' });
   const history = useHistory();
+  const [recipient, setRecipient] = useState('')
   
   useEffect( () => {
     if (user) {
@@ -52,6 +53,7 @@ function App() {
       console.log(msg, ' msg received in App.js');
       setMessages({chat: [...messages.chat, msg]})
     })
+    return () => {}
   }, []);
 
   const handleMessageBodyChange = (e) => {
@@ -100,6 +102,7 @@ function App() {
       // to: contactUsername,
       // body: {...messages.body}
     })
+    setRecipient(contact.username)
     history.push('/chat')
     // redirectToChat()
     // console.log(messages);
@@ -190,6 +193,7 @@ function App() {
               user={user}
               profile={profile}
               messages={messages}
+              recipient={recipient}
               handleMessageBodyChange={handleMessageBodyChange}
               handleMessageSubmit={handleMessageSubmit}
             />
