@@ -7,6 +7,7 @@ export default ContactPage;
 
 function ContactPage(props) {
 
+  // console.log(props.profile);
   let page = props.profile ?
   <div>
     
@@ -27,7 +28,7 @@ function ContactPage(props) {
       <h1>This is the ContactPage</h1>
       {page}
       <AddContactForm handleAddContact={props.handleAddContact} profile={props.profile}/>
-      <ContactList profile={props.profile}/>
+      <ContactList profile={props.profile} contacts={props.contacts} handleContactSelect={props.handleContactSelect}/>
     </div>
   )
 }

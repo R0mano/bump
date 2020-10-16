@@ -21,7 +21,7 @@ const profileSchema = new Schema({
     type: String,
     required: true,
     maxlength: 50,
-    unique:true
+    unique: true
     // get name from user.name?
   },
   dob: {
@@ -40,10 +40,10 @@ const profileSchema = new Schema({
     maxlength: 100
   },
   avatar: String,
-  contacts: {
-    type: [Schema.Types.ObjectId],
+  contacts: [{
+    type: Schema.Types.ObjectId,
     ref: 'Profile'
-  },
+  }],
 
 }, {
   timestamps: true

@@ -13,9 +13,9 @@ function AddContactForm(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(contact, 'this is the new contact to be added');
-    console.log(props, 'these are the props inside AddContactForm');
-    props.handleAddContact({contact: contact, profileId: props.profile._id});
+    // console.log(contact, 'this is the new contact to be added');
+    // console.log(props, 'these are the props inside AddContactForm');
+    await props.handleAddContact({contact: contact, profileId: props.profile._id});
 
     // try {
     //   await profileService.create(contact)

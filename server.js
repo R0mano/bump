@@ -2,14 +2,19 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const http = require('http');
+const io = require('./config/io');
+const app = express();
 
+require('socket.io');
 require('dotenv').config();
 require('./config/database');
 
 const profileRouter = require('./routes/api/profiles');
 
-const app = express();
 
+const server = http.createServer(app);
+io.attach(server);
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,6 +33,6 @@ app.get('/*', function(req, res) {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, function() {
-  console.log(`Express app listening on port ${port}`);
+server.listen(port, function() {
+  console.log(`Server has started on port ${port}`);
 });

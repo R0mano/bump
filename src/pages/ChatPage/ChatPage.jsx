@@ -23,10 +23,23 @@ function ChatPage(props) {
   return(
     <div>
       <NavBar user={props.user} profile={props.profile}/>
+
       <h1>This is the ChatPage</h1>
+
       {page}
-      <MessageHistory/>
-      <NewMessageForm/>
+
+      <MessageHistory
+      profile={props.profile}
+      messages={props.messages}
+      handleMessageSubmit={props.handleMessageSubmit}
+      />
+
+      <NewMessageForm
+      profile={props.profile}
+      messages={props.messages}
+      handleMessageBodyChange={props.handleMessageBodyChange}
+      handleMessageSubmit={props.handleMessageSubmit}
+      />
     </div>
   )
 }
