@@ -7,7 +7,7 @@ function MessageHistory(props) {
 
 
 
-  let messageHistory = (props.profile && props.message) ?
+  let messageHistory = (props.profile && props.messages) ?
   <div>
 
     {props.messages.chat.map(message =>

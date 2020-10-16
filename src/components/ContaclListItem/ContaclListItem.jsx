@@ -7,13 +7,16 @@ export default ContactListItem;
 function ContactListItem(props) {
 
 
-  function redirectToChat() {
-    return <Redirect to="/chat"/>
-  }
+  
 
   function handleClick(e) {
     console.log(e.target.innerText, ' Contact being clicked');
-    props.handleContactSelect(e.target.innerText);
+    // const reciepient = props.profile.contacts.find((contact) => {
+    //   contact.username = e.target.innerText
+    // })._id
+  
+    // console.log(reciepient, '  le destinataire');
+    props.handleContactSelect(props.contact);
     // redirectToChat();
   }
 

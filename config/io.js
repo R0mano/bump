@@ -23,6 +23,7 @@ io.on('connection', socket => {
   ///
   socket.on('message', (msg) => {
     console.log(msg, ' msg inside io.js');
+    // Message.create(msg)
     socket.broadcast.emit('push', msg);
   });
   socket.on('disconnect', () => {

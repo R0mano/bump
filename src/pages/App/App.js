@@ -54,7 +54,7 @@ function App() {
     })
   }, []);
 
-  function handleMessageBodyChange(e) {
+  const handleMessageBodyChange = (e) => {
     const formData = {...messages, ...{
       from: profile._id,
       body: e.target.value,
@@ -77,24 +77,24 @@ function App() {
       body: messages.body
     });
     console.log('Message has been sent');
-    setMessages({...messages, ...{
-      chat: [...messages.chat, ...{
-        from: messages.from,
-        to: messages.to,
-        body: messages.body,
-      }]    
-    },
-    from: messages.from,
-    to: messages.to,
-    body: '',
-    });
+    console.log(messages, 'this is the messages');
+    setMessages(prevMessages => {return {
+      chat: [...prevMessages.chat, {
+        from: prevMessages.from,
+        to: prevMessages.to,
+        body: prevMessages.body,
+      }],
+      from: profile._id,
+      to: prevMessages.to,
+      body: '',
+    }});
   }
 
-  function handleContactSelect(contactUsername) {
-    console.log(contactUsername, ' Inside App handleContactSelect');
+  function handleContactSelect(contact) {
+    console.log(contact._id, ' Inside App handleContactSelect');
     setMessages({
       ...messages, 
-      ...{to: contactUsername}
+      ...{to: contact._id}
       // chat: [...messages.chat],
       // from: profile._id,
       // to: contactUsername,
