@@ -5,6 +5,9 @@ export default MessageHistory;
 
 function MessageHistory(props) {
 
+  function messageFilter() {
+    const messagesISent = () => props.messages.chat.filter((msg) => msg.to === props.messages.to)
+  }
 
 
   let messageHistory = (props.profile && props.messages) ?
