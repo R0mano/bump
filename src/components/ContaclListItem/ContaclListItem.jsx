@@ -11,13 +11,7 @@ function ContactListItem(props) {
 
   function handleClick(e) {
     console.log(e.target.innerText, ' Contact being clicked');
-    // const reciepient = props.profile.contacts.find((contact) => {
-    //   contact.username = e.target.innerText
-    // })._id
-  
-    // console.log(reciepient, '  le destinataire');
     props.handleContactSelect(props.contact);
-    // redirectToChat();
   }
 
 

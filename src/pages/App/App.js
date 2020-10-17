@@ -110,23 +110,6 @@ function App() {
     // console.log(messages);
   }
 
-  // function redirectToChat() {
-  //   return <Redirect to="/chat"/>
-  // }
-
-  // useEffect(() => {
-  //   // console.log(profile);
-  //   if(profile) {
-  //     console.log(profile._id);
-  //     // const contactList = await profileService.getContacts(props.profile._id);
-  //     // console.log(contactList, ' contactList');
-  //     setContacts(profileService.getContacts(profile._id));
-  //     console.log(contacts, ' these are the contacts returned from the backend');
-  //   }
-  //   return () => {
-  //     console.log('contacts fetched');
-  //   }
-  // }, [profile]);
 
   function handleLogout() {
     userService.logout();
