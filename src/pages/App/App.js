@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import io from 'socket.io-client';
-import NavBar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
@@ -13,8 +12,8 @@ import "./App.css";
 import { PromiseProvider } from "mongoose";
 // import ProfilePage from "../ProfilePage/ProfilePage";
 let socket;
-// const END_POINT = 'http://localhost:3001/';
-const END_POINT = 'https://ibump.herokuapp.com/';
+const END_POINT = 'http://localhost:3001/';
+// const END_POINT = 'https://ibump.herokuapp.com/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -46,7 +45,6 @@ function App() {
     // Fetching messages
     socket.on('init', (msg) => {
       let msgReversed = msg.reverse();
-      // looks weird----------
       setMessages({chat: [...msgReversed]})
     });
 
@@ -55,7 +53,6 @@ function App() {
       console.log(msg, ' msg received in App.js');
       setMessages({chat: [...messages.chat, msg]})
     })
-    return () => {}
   }, []);
 
   const handleMessageBodyChange = (e) => {

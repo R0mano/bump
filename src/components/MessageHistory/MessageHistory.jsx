@@ -34,16 +34,16 @@ function MessageHistory(props) {
       
       
       
-      // const filteredMessages = filterArray(props.messages.chat, filters)
-      
-      let messageHistory = (props.profile && props.messages) ?
+      const filteredMessages = filterArray(props.messages.chat, filters)
+      let messageHistory = (props.profile && props.messages.chat) ?
       
   <div>
 
-    {filterArray(props.messages.chat, filters).map(message =>
+    {filteredMessages.map(message =>
        <MessageHistoryItem
        message={message}
        recipient={props.recipient}
+       key={message}
        
        />
     )}
