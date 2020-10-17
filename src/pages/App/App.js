@@ -14,7 +14,7 @@ import { PromiseProvider } from "mongoose";
 // import ProfilePage from "../ProfilePage/ProfilePage";
 let socket;
 // const END_POINT = 'http://localhost:3001/';
-const END_POINT = 'https://ibump.herokuapp.com/chat';
+const END_POINT = 'https://ibump.herokuapp.com/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
