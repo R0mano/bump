@@ -13,7 +13,7 @@ import "./App.css";
 import { PromiseProvider } from "mongoose";
 // import ProfilePage from "../ProfilePage/ProfilePage";
 let socket;
-const END_POINT = 'http://localhost:3000/';
+const END_POINT = 'http://localhost:3001/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -35,6 +35,7 @@ function App() {
     }
     return () => {
       // console.log('profile loaded');
+      setProfile(null)
     }
   }, []);
   
@@ -45,7 +46,7 @@ function App() {
     socket.on('init', (msg) => {
       let msgReversed = msg.reverse();
       // looks weird----------
-      setMessages({chat: [...messages.chat, ...msgReversed]})
+      setMessages({chat: [...msgReversed]})
     });
 
     //Update the chat if new message

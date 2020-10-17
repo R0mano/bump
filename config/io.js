@@ -5,20 +5,22 @@ const Message = require('../models/message');
 const users = {};
 
 io.on('connection', socket => {
-  socket.on("sign-on", username => {
-    console.log(socket._id, 'User has connected');
-    const user = {
-      name: username,
-      id: socket.id
-    };
-    users[socket.id] = user;
-    io.emit("connected", user);
-    io.emit("users", Object.values(users));
-  });
+  // console.log('socket.io is connected');
+  // socket.on("sign-on", username => {
+  //   console.log(socket._id, 'User has connected------------------------------------------------');
+  //   console.log(user, 'this is the socket.io user')
+  //   const user = {
+  //     name: username,
+  //     id: socket.id
+  //   };
+  //   users[socket.id] = user;
+  //   io.emit("connected", user);
+  //   io.emit("users", Object.values(users));
+  // });
   ///
   Message.find({}).sort({createdAt: -1})
-    .limit(10).exec((err, messages) => {
-      socket.emit('init', messages);
+    .limit(100).exec((err, msg) => {
+      socket.emit('init', msg);
     })
   ///
   socket.on('message', (msg) => {
