@@ -94,6 +94,8 @@ function App() {
     }});
   }
 
+  
+
   function handleContactSelect(contact) {
     console.log(contact._id, ' Inside App handleContactSelect');
     setMessages({
@@ -110,6 +112,15 @@ function App() {
     // console.log(messages);
   }
 
+  const handleAddContact = async (newContactData) => {
+    // console.log(newContactData, 'newContactData------');
+    
+    const newContact = await profileService.addNewContact(newContactData);
+    // console.log(newContact, 'the new contact');
+    setProfile(newContact);
+    // console.log(profile, ' The brand new Profile State');
+    // () => PromiseProvider.history.push('/')
+  }
 
   function handleLogout() {
     userService.logout();
@@ -124,15 +135,6 @@ function App() {
     // console.log(user, "this is the user in handleSignupOrLogin");
   };
 
-  const handleAddContact = async (newContactData) => {
-    // console.log(newContactData, 'newContactData------');
-    
-    const newContact = await profileService.addNewContact(newContactData);
-    // console.log(newContact, 'the new contact');
-    setProfile(newContact);
-    // console.log(profile, ' The brand new Profile State');
-    // () => PromiseProvider.history.push('/')
-  }
 
 
   return (

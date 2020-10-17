@@ -6,21 +6,13 @@ import MessageHistoryItem from '../MessageHistoryItem/MessageHistoryItem';
 export default MessageHistory;
 
 function MessageHistory(props) {
-  const [filteredMessages, setFilteredMessages] = useState([])
-
 
   const filters = {
     from: from => from === props.messages.to || from === props.profile._id,
     to: to => to === props.messages.to || to === props.profile._id
   }
 
-  // function messageFilter() {
-  //   props.messages.chat.filter((msg) => {
-  //     msg.to === props.messages.to || props.profile._id && msg.from === props.messages.to || props.profile._id
-  //   })
-  // }
-
-  const filterArray = (array, filters) => {
+ const filterArray = (array, filters) => {
     const filterKeys = Object.keys(filters);
     return array.filter(item => {
       // validates all filter criteria
@@ -32,13 +24,16 @@ function MessageHistory(props) {
     });
   }
 
-    // async function loadingMessages() {
-      // await props.messages
-      useEffect(() => {
-        setFilteredMessages(filterArray(props.messages.chat, filters))
-        console.log(filteredMessages);
-      }, [props.messages])
-    // }
+    const filteredMessages = filterArray(props.messages.chat, filters)
+  
+
+  // function messageFilter() {
+  //   props.messages.chat.filter((msg) => {
+  //     msg.to === props.messages.to || props.profile._id && msg.from === props.messages.to || props.profile._id
+  //   })
+  // }
+
+ 
 
 
   let messageHistory = (props.profile && props.messages) ?
@@ -49,6 +44,7 @@ function MessageHistory(props) {
        <MessageHistoryItem
        message={message}
        recipient={props.recipient}
+       
        />
     )}
 </div>
