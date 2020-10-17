@@ -24,23 +24,23 @@ function MessageHistory(props) {
     });
   }
 
-    const filteredMessages = filterArray(props.messages.chat, filters)
   
-
+  
   // function messageFilter() {
-  //   props.messages.chat.filter((msg) => {
-  //     msg.to === props.messages.to || props.profile._id && msg.from === props.messages.to || props.profile._id
-  //   })
-  // }
-
- 
-
-
-  let messageHistory = (props.profile && props.messages) ?
-  
+    //   props.messages.chat.filter((msg) => {
+      //     msg.to === props.messages.to || props.profile._id && msg.from === props.messages.to || props.profile._id
+      //   })
+      // }
+      
+      
+      
+      // const filteredMessages = filterArray(props.messages.chat, filters)
+      
+      let messageHistory = (props.profile && props.messages) ?
+      
   <div>
 
-    {filteredMessages.map(message =>
+    {filterArray(props.messages.chat, filters).map(message =>
        <MessageHistoryItem
        message={message}
        recipient={props.recipient}
