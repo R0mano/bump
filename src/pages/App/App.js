@@ -136,7 +136,7 @@ function App() {
 
 
   return (
-    <div className=".App">
+    <div className="App container container-fluid">
       <Switch>
         <Route
           exact
@@ -167,36 +167,37 @@ function App() {
               handleLogout={handleLogout}
               user={user}
               profile={profile}
-            />
-          )}
-        />
+              />
+              )}
+              />
         <Route
           exact
           path="/chat"
           render={({ history }) => (
             <ChatPage
-              history={history}
-              // handleLogout={handleLogout}
-              user={user}
-              profile={profile}
-              messages={messages}
-              recipient={recipient}
-              handleMessageBodyChange={handleMessageBodyChange}
-              handleMessageSubmit={handleMessageSubmit}
+            history={history}
+            handleLogout={handleLogout}
+            user={user}
+            profile={profile}
+            messages={messages}
+            recipient={recipient}
+            handleMessageBodyChange={handleMessageBodyChange}
+            handleMessageSubmit={handleMessageSubmit}
             />
-          )}
-        />
+            )}
+            />
         <Route
           exact
           path="/contacts"
           render={({ history }) => (
             <ContactPage
-              history={history}
-              handleAddContact={handleAddContact}
-              handleContactSelect={handleContactSelect}
-              user={user}
-              profile={profile}
-              // contacts={contacts}
+            handleLogout={handleLogout}
+            history={history}
+            handleAddContact={handleAddContact}
+            handleContactSelect={handleContactSelect}
+            user={user}
+            profile={profile}
+            handleLogout={handleLogout}
             />
           )}
         />

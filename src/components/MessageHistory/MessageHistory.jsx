@@ -45,18 +45,24 @@ function MessageHistory(props) {
       
       // const filteredMessages = filterArray(props.messages.chat, filters)
       console.log(filteredMessages, ' filteredMessages');
+
+      
       let messageHistory = (props.profile && props.messages.chat) ?
       
   <div>
-
-    {filteredMessages.map((message, idx) =>
+    
+    { filteredMessages.length ?
+    filteredMessages.map((message, idx) =>
        <MessageHistoryItem
        message={message}
+       profile={props.profile}
        recipient={props.recipient}
        key={idx}
-       
        />
-    )}
+    )
+      :
+      <p>Select a contact</p>
+  }
 </div>
   :
   <div>

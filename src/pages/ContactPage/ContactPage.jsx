@@ -8,25 +8,25 @@ export default ContactPage;
 function ContactPage(props) {
 
   // console.log(props.profile);
-  let page = props.profile ?
-  <div>
+  // let page = props.profile ?
+  // <div>
     
-    {/* <h1>console.log(props.profile.username, 'profile')</h1> */}
-    <h1>{props.profile.username}</h1>
-    <h1>{props.profile.dob}</h1>
-    <h1>{props.profile.bio}</h1>      
-    </div>
-    :
-    <div>
-      <h1>loading...</h1>    
-    </div>
+  //   {/* <h1>console.log(props.profile.username, 'profile')</h1> */}
+  //   <h1>{props.profile.username}</h1>
+  //   <h1>{props.profile.dob}</h1>
+  //   <h1>{props.profile.bio}</h1>      
+  //   </div>
+  //   :
+  //   <div>
+  //     <h1>loading...</h1>    
+  //   </div>
 
 
   return(
     <div>
-      <NavBar user={props.user} profile={props.profile}/>
-      <h1>This is the ContactPage</h1>
-      {page}
+      <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile}/>
+      <h1>Contacts</h1>
+      {/* {page} */}
       <AddContactForm handleAddContact={props.handleAddContact} profile={props.profile}/>
       <ContactList profile={props.profile} contacts={props.contacts} handleContactSelect={props.handleContactSelect}/>
     </div>

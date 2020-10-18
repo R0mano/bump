@@ -22,7 +22,7 @@ function NewMessageForm(props) {
       <h4>this is the NewMessageForm component</h4>
       <div>
       <form action="">
-        <input type="text" name="body" onChange={handleChange}/>
+        <input type="text" name="body" value={props.messages.body} onChange={handleChange}/>
         <button type="submit" disabled={isValid()} onClick={handleSubmit}>Send</button>
       </form>
       </div>

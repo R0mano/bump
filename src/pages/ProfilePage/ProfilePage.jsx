@@ -10,9 +10,9 @@ function ProfilePage(props) {
   <div>
     
     {/* <h1>console.log(props.profile.username, 'profile')</h1> */}
-    <h1>{props.profile.username}</h1>
-    <h1>{props.profile.dob}</h1>
-    <h1>{props.profile.bio}</h1>      
+    <h1>Username: {props.profile.username}</h1>
+    {/* <h1>{props.profile.dob}</h1> */}
+    <h1>About you: {props.profile.bio}</h1>      
     </div>
     :
     <div>
@@ -22,10 +22,9 @@ function ProfilePage(props) {
 
   return(
     <div>
-      <NavBar user={props.user} profile={props.profile} handleLogout={props.handleLogout}/>
-      <h1>This is the ProfilePage</h1>
+      <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile} handleLogout={props.handleLogout}/>
+      <h1>Profile</h1>
       {page}
-      <Link to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</Link>
     </div>
   )
 }

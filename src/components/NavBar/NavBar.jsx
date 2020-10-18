@@ -25,17 +25,21 @@ function NavBar(props) {
   // </div>;
 
   let navabar = props.profile ?
-    <div className='NavBar'>
-       <div>
-      <p>This is the NavBar</p>
-      <NavLink exct to='/profile'>Profile</ NavLink>
-      <NavLink exact to='/chat'>Chat</ NavLink>
-      <NavLink exact to='/contacts'>Contacts</ NavLink>
-      {/* Put the logout link at the bottom of profile page */}
-      {/* <NavLink to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</NavLink> */}
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className='NavBar-welcome'>WELCOME, {props.profile.username}</span>
+  <div>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div className="navbar-nav">
+      <NavLink exct to='/profile' className="nav-link active" href="#">Profile <span class="sr-only">(current)</span></NavLink>
+      <NavLink exact to='/chat' className="nav-link" href="#">Chat</NavLink>
+      <NavLink exact to='/contacts' className="nav-link" href="#">Contacts</NavLink>
     </div>
+  </div>
+  <span className='NavBar-welcome'>WELCOME, {props.profile.username}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <Link to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</Link>
+
+</nav>
+
+
     </div>
     :
     <div>
