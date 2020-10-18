@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import userService from '../../utils/userService';
+import './SignupForm.css'
 
 class SignupForm extends Component {
 
@@ -42,8 +43,8 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div>
-        <header className="header-footer">Sign Up</header>
+      <div className='SignupForm' >
+        <header className="header-footer header"><h3>Sign Up</h3></header>
         <form className="form-horizontal" onSubmit={this.handleSubmit} >
           <div className="form-group">
             <div className="col-sm-12">
@@ -75,14 +76,14 @@ class SignupForm extends Component {
               <input type="text" className="form-control" placeholder="A little bit about yourself" value={this.state.bio} name="bio" onChange={this.handleChange} />
             </div>
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
             <div className="col-sm-12">
               <input type="file" className="form-control" placeholder="Upload an Avatar" value={this.state.avatar} name="avatar" onChange={this.handleChange} />
             </div>
-          </div>
+          </div> */}
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
+              <button className="btn btn-default" disabled={this.isFormInvalid()}><span>Sign Up</span></button>&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
             </div>
           </div>

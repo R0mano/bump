@@ -25,18 +25,19 @@ function NavBar(props) {
   // </div>;
 
   let navabar = props.profile ?
-  <div>
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <div className='NavBar' >
+  <nav className="navbar navbar-expand ">
+  <div  id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <NavLink exct to='/profile' className="nav-link active" href="#">Profile <span class="sr-only">(current)</span></NavLink>
-      <NavLink exact to='/chat' className="nav-link" href="#">Chat</NavLink>
-      <NavLink exact to='/contacts' className="nav-link" href="#">Contacts</NavLink>
+      <NavLink exct to='/profile' className="nav-link link" href="#">Profile <span class="sr-only">(current)</span></NavLink>
+      <NavLink exact to='/chat' className="nav-link link" href="#">Chat</NavLink>
+      <NavLink exact to='/contacts' className="nav-link link" href="#">Contacts</NavLink>
     </div>
   </div>
-  <span className='NavBar-welcome'>WELCOME, {props.profile.username}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <Link to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</Link>
-
+  <div className="navbar collapse navbar-collapse right">
+  <span className='NavBar-welcome'>WELCOME, {props.profile.username}&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <Link className='link' to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</Link>
+  </div>
 </nav>
 
 

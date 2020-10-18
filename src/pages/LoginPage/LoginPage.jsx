@@ -3,6 +3,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import './LoginPage.css';
 import userService from '../../utils/userService';
 import SignupPage from '../SignupPage/SignupPage';
+import './LoginPage.css';
 
 class LoginPage extends Component {
   
@@ -36,7 +37,8 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="LoginPage">
-        <header className="header-footer">Log In</header>
+        <div className='wrapper' >
+        <header className="header-footer"><h3>Log In</h3></header>
         <form className="form-horizontal" onSubmit={this.handleSubmit} >
           <div className="form-group">
             <div className="col-sm-12">
@@ -50,7 +52,7 @@ class LoginPage extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Log In</button>&nbsp;&nbsp;&nbsp;
+              <button className="btn btn-default button">Log In</button>&nbsp;&nbsp;&nbsp;
               {/* <Link to='/'>Cancel</Link> */}
               <Link to='/signup'>Signup</Link>
 
@@ -66,6 +68,7 @@ class LoginPage extends Component {
       }
         />
         </Switch>
+        </div>
       </div>
     );
   }

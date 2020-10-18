@@ -56,6 +56,8 @@ function App() {
     })
   }, []);
 
+  
+
   const handleMessageBodyChange = (e) => {
     const formData = {...messages, ...{
       from: profile._id,
@@ -64,6 +66,7 @@ function App() {
   }
     setMessages(formData);
   }
+
 
   // function handleName(e) {
   //   setMessages({to: e.target.value})
@@ -136,7 +139,7 @@ function App() {
 
 
   return (
-    <div className="App container container-fluid">
+    <div className="App container container-fluid" id='chat' elevation={3}>
       <Switch>
         <Route
           exact

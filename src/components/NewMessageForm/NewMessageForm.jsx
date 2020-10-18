@@ -1,4 +1,5 @@
 import React from 'react';
+import './NewMessageForm.css'
 
 export default NewMessageForm;
 
@@ -18,14 +19,30 @@ function NewMessageForm(props) {
   }
 
   return(
-    <div>
-      <h4>this is the NewMessageForm component</h4>
-      <div>
-      <form action="">
-        <input type="text" name="body" value={props.messages.body} onChange={handleChange}/>
-        <button type="submit" disabled={isValid()} onClick={handleSubmit}>Send</button>
-      </form>
-      </div>
+    <div className='NewMessageForm'>
+
+<div className="input-group mb-3 mx-auto col-10">
+    <input
+    className="form-control col-10"
+    type="text"
+    placeholder="New Message"
+    aria-label="New Message"
+    name="body"
+    autofocus
+    // value={props.messages.body}
+    onChange={handleChange}
+  />
+  <button className="form-control btn btn-primary col-2" type="submit" disabled={isValid()} onClick={handleSubmit}>
+    Send
+  </button>
+</div>
+
+
+
+
+
+
+     
     </div>
   )
 }

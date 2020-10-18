@@ -1,0 +1,12 @@
+.ContactPage h1{
+  color: white;
+}
+
+
+@media only screen and (min-width: 800px) {
+
+.contact-wrapper{
+  max-width: 60%;
+  margin: 0 auto;
+}
+}

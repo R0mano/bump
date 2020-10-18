@@ -1,0 +1,24 @@
+.NavBar{
+  background: #0f3460;
+  color: white;
+}
+
+a{
+  color: white;
+}
+
+a:hover{
+  color: white;
+  text-decoration: underline !important;
+}
+
+.right{
+  justify-content: flex-end;
+}
+
+@media only screen and (max-width: 520px) {
+
+  .NavBar-welcome{
+    display: none;
+  }
+}

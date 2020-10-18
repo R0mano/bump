@@ -1,4 +1,9 @@
 .contact-item{
   margin: 10px;
   /* background-color: red; */
+  text-align: left;
+}
+
+small{
+  color: black;
 }

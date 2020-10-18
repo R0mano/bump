@@ -44,9 +44,7 @@ function ContactList(props) {
 
   return(
     <div>
-      <h4>ContactList component</h4>
       {contactList}
-
     </div>
   )
 }

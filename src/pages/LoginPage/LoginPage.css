@@ -1,0 +1,27 @@
+.LoginPage{
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  color: white;
+  margin: 0 auto;
+}
+
+.wrapper{
+  margin-top: 100px;
+  align-self: center;
+  justify-content: center;
+  
+}
+
+.button{
+  color: white;
+}
+
+h3{
+  margin: 20px;
+}
+
+button:hover{
+  color: white!important;
+  
+}

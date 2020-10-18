@@ -1,9 +1,39 @@
 .me{
-  background: red;
-  background-color: red;
-  color: blue;
+  /* background: rgb(35, 144, 247); */
+  /* background-color: red; */
+  color: white;
+  border-radius: 10%;
+  /* padding: 1rem 1rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .you{
-  background-color: blue;
-  color: red;
+  /* background-color: rgb(225, 225, 231)  ; */
+  color: rgb(35, 35, 35);
+  border-radius: 10%;
+  /* padding: 1rem 1rem; */
+  display: flex;
+  align-items: flex-start;
+}
+
+.message{
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.you .message {
+  margin-right: 25%;
+  background-color: #eee;
+  position: relative;
+}
+
+.me .message {
+  color: white;
+  margin-left: 25%;
+  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background-attachment: fixed;
+  position: relative;
 }

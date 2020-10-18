@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import MessageHistoryItem from '../MessageHistoryItem/MessageHistoryItem';
+import './MessageHistory.css';
 
 export default MessageHistory;
 
@@ -24,9 +25,9 @@ function MessageHistory(props) {
 //       });
 //     });
 //   }
-  console.log(props.messages.to, ' props.messages.to');
-  console.log(props.messages.from, ' props.messages.from');
-  console.log(props.profile._id, ' props.profile._id');
+  // console.log(props.messages.to, ' props.messages.to');
+  // console.log(props.messages.from, ' props.messages.from');
+  // console.log(props.profile._id, ' props.profile._id');
   const filteredMessages = props.messages.chat.filter((message) => {
     return message.from === props.messages.to
       && message.to === props.profile._id
@@ -34,6 +35,17 @@ function MessageHistory(props) {
       && message.from === props.profile._id
   })
   console.log(filteredMessages, ' filteredMessages');
+
+
+  useEffect(()=> {
+    scrollToBottom()
+  }, [props.messages])
+
+  function scrollToBottom() {
+    const chat = document.querySelector('.message-history');
+    console.log(chat);
+    chat.scrollTop = chat.scrollHeight;
+  }
   
   // function messageFilter() {
     //   props.messages.chat.filter((msg) => {
@@ -49,7 +61,7 @@ function MessageHistory(props) {
       
       let messageHistory = (props.profile && props.messages.chat) ?
       
-  <div>
+  <div className='message-history' >
     
     { filteredMessages.length ?
     filteredMessages.map((message, idx) =>
@@ -65,7 +77,7 @@ function MessageHistory(props) {
   }
 </div>
   :
-  <div>
+  <div  className='message-history' >
     <h2>
       Loading...
     </h2>
@@ -73,8 +85,8 @@ function MessageHistory(props) {
 
   return(
     <div>
-      <h4>This is the MessageHistory component</h4>
-      <div>
+      {/* <h4>This is the MessageHistory component</h4> */}
+      <div >
         {
           props.messages.chat.length ? messageHistory : <p>loading...</p>
         }

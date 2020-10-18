@@ -23,11 +23,11 @@ function ContactListItem(props) {
       <div className='ContactItem contact-item' onClick={handleClick}>
       <div class="card">
         <div class="card-body">
-          <h4>{props.contact.username} |<span> <small>{props.contact.bio}</small></span></h4>
+          <h4>{props.contact.username} &nbsp;&nbsp;|&nbsp;&nbsp;<span><small>{props.contact.bio}</small></span></h4>
         </div>
       </div>
        
       </div>
     </div>
   )
-}
+} 

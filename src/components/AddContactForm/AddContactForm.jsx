@@ -1,6 +1,7 @@
 import { set } from 'mongoose';
 import React, { Component, useState, useEffect } from 'react';
 import profileService from '../../utils/profileService';
+import './AddContactForm.css';
 
 export default AddContactForm;
 
@@ -27,11 +28,11 @@ function AddContactForm(props) {
 
 
   return (
-    <div>
-      <h3>AddContactForm</h3>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name='contact' value={contact} onChange={handleChange} required/>
-        <button className="btn btn-default" >Add Contact</button>
+    <div className='AddContactForm' >
+      {/* <h3>AddContactForm</h3> */}
+      <form className='form-inline' onSubmit={handleSubmit}>
+        <input className='form-control col-10' type="text" name='contact' placeholder="Contact's Username" value={contact} onChange={handleChange} required/>
+        <button className="form-control col-2 btn btn-sm btn-primary" >Add Contact</button>
       </form>
     </div>
   )
