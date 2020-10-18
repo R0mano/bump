@@ -136,7 +136,7 @@ function App() {
 
 
   return (
-    <div className="landing-page">
+    <div className=".App">
       <Switch>
         <Route
           exact
