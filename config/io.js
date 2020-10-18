@@ -5,28 +5,16 @@ const Message = require('../models/message');
 const users = {};
 
 io.on('connection', socket => {
-  // console.log('socket.io is connected');
-  // socket.on("sign-on", username => {
-  //   console.log(socket._id, 'User has connected------------------------------------------------');
-  //   console.log(user, 'this is the socket.io user')
-  //   const user = {
-  //     name: username,
-  //     id: socket.id
-  //   };
-  //   users[socket.id] = user;
-  //   io.emit("connected", user);
-  //   io.emit("users", Object.values(users));
-  // });
-  ///
   Message.find({}).sort({createdAt: -1})
     .limit(100).exec((err, msg) => {
+      console.log(msg, ' Messages in socket.io init');
       socket.emit('init', msg);
     })
   ///
-  socket.on('message', (msg) => {
+  socket.on('message', async (msg) => {
     console.log(msg, ' msg inside io.js');
-    socket.broadcast.emit('push', msg);
-    Message.create(msg)
+    const newMessage = await Message.create(msg)
+    socket.broadcast.emit('push', newMessage);
   });
   socket.on('disconnect', () => {
     delete users[socket.id]

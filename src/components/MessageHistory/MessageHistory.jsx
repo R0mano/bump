@@ -6,25 +6,34 @@ import MessageHistoryItem from '../MessageHistoryItem/MessageHistoryItem';
 export default MessageHistory;
 
 function MessageHistory(props) {
+  console.log(props.messages.chat, 'PROPS.messages.chat');
+//   const filters = {
+//     from: from => from === props.messages.to || from === props.profile._id,
+//     to: to => to === props.messages.to || to === props.profile._id
+//   }
 
-  const filters = {
-    from: from => from === props.messages.to || from === props.profile._id,
-    to: to => to === props.messages.to || to === props.profile._id
-  }
-
- const filterArray = (array, filters) => {
-    const filterKeys = Object.keys(filters);
-    return array.filter(item => {
-      // validates all filter criteria
-      return filterKeys.every(key => {
-        // ignores non-function predicates
-        if (typeof filters[key] !== 'function') return true;
-        return filters[key](item[key]);
-      });
-    });
-  }
-
-  
+//  const filterArray = (array, filters) => {
+//    const filterKeys = Object.keys(filters);
+//    console.log(array, filterKeys, 'array and filterKeys');
+//     return array.filter(item => {
+//       // validates all filter criteria
+//       return filterKeys.every(key => {
+//         // ignores non-function predicates
+//         if (typeof filters[key] !== 'function') return true;
+//         return filters[key](item[key]);
+//       });
+//     });
+//   }
+  console.log(props.messages.to, ' props.messages.to');
+  console.log(props.messages.from, ' props.messages.from');
+  console.log(props.profile._id, ' props.profile._id');
+  const filteredMessages = props.messages.chat.filter((message) => {
+    return message.from === props.messages.to
+      && message.to === props.profile._id
+      || message.to === props.messages.to
+      && message.from === props.profile._id
+  })
+  console.log(filteredMessages, ' filteredMessages');
   
   // function messageFilter() {
     //   props.messages.chat.filter((msg) => {
@@ -34,16 +43,17 @@ function MessageHistory(props) {
       
       
       
-      const filteredMessages = filterArray(props.messages.chat, filters)
+      // const filteredMessages = filterArray(props.messages.chat, filters)
+      console.log(filteredMessages, ' filteredMessages');
       let messageHistory = (props.profile && props.messages.chat) ?
       
   <div>
 
-    {filteredMessages.map(message =>
+    {filteredMessages.map((message, idx) =>
        <MessageHistoryItem
        message={message}
        recipient={props.recipient}
-       key={message}
+       key={idx}
        
        />
     )}
@@ -55,12 +65,13 @@ function MessageHistory(props) {
     </h2>
   </div>
 
-
   return(
     <div>
       <h4>This is the MessageHistory component</h4>
       <div>
-        {messageHistory}
+        {
+          props.messages.chat.length ? messageHistory : <p>loading...</p>
+        }
         
       </div>
     </div>

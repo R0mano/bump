@@ -12,8 +12,8 @@ import "./App.css";
 import { PromiseProvider } from "mongoose";
 // import ProfilePage from "../ProfilePage/ProfilePage";
 let socket;
-const END_POINT = 'http://localhost:3001/';
-// const END_POINT = 'https://ibump.herokuapp.com/';
+// const END_POINT = 'http://localhost:3001/';
+const END_POINT = 'https://ibump.herokuapp.com/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -23,6 +23,7 @@ function App() {
   const [recipient, setRecipient] = useState('')
   
   useEffect( () => {
+    console.log('THIS USEEFFECT FIRES');
     if (user) {
       // console.log('hitting useEffect', user);
       profileService.getProfile(user._id)
@@ -33,25 +34,25 @@ function App() {
     } else {
       setProfile(null);
     }
-    return () => {
-      // console.log('profile loaded');
-      setProfile(null)
-    }
-  }, []);
+    // return () => {
+    //   // console.log('profile loaded');
+    //   setProfile(null)
+    // }
+  }, [user]);
   
   useEffect(() => {
     socket = io(END_POINT);
 
     // Fetching messages
     socket.on('init', (msg) => {
-      let msgReversed = msg.reverse();
-      setMessages({chat: [...msgReversed]})
+      console.log(msg, 'msg inside App.js when socket.io init');
+      setMessages({chat: [...msg]})
     });
 
     //Update the chat if new message
     socket.on('push', (msg) => {
       console.log(msg, ' msg received in App.js');
-      setMessages({chat: [...messages.chat, msg]})
+      setMessages((prevmessages) => {return {...prevmessages, chat: [...prevmessages.chat, msg], body:''}})
     })
   }, []);
 

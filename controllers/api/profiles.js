@@ -11,7 +11,7 @@ async function index(req, res) {
   // const profile = await Profile.findOne({user: req.params.userId})
   let profile = await Profile.findOne({user: req.params.userId});
   await profile.populate('contacts').execPopulate();
-  console.log(profile, 'profile populated with all the contacts');
+  // console.log(profile, 'profile populated with all the contacts');
   res.status(200).json(profile);
   // .then(
   //   profile => {
