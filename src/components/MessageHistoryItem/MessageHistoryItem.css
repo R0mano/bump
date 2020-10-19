@@ -29,11 +29,10 @@
   color: white;
   margin-left: 25%;
   background-color:  #0085D1; /* fallback color if gradients are not supported */
-  background: -webkit-linear-gradient(bottom, #00D0EA 0%, #0085D1 100%); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
-  background:    -moz-linear-gradient(to bottom,#00D0EA 0%, #0085D1 100%); /* For Firefox (3.6 to 15) */
-  background:      -o-linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); /* For old Opera (11.1 to 12.0) */ 
-  background:         linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); /* Standard syntax; must be last */
-  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background-image: -webkit-linear-gradient(bottom, #00D0EA 0%, #0085D1 100%); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+  background-image:    -moz-linear-gradient(to bottom,#00D0EA 0%, #0085D1 100%); /* For Firefox (3.6 to 15) */
+  background-image:      -o-linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); /* For old Opera (11.1 to 12.0) */ 
+  background-image:         linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); /* Standard syntax; must be last */
   background-attachment: fixed;
   position: relative;
 }
