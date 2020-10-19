@@ -3,7 +3,7 @@
 
 In the project directory, you can run:
 
-### `Intrudction`
+### `Introduction`
 
 iBump is a real time messenger application. Send and receive messages with no delay to/from a selected contact.<br />
 
