@@ -29,6 +29,7 @@ iBump is a real time messenger application. Send and receive messages with no de
 ### `Technologies used`
 
 - MERN Stack - MongoDB/Mongoose, Express, React/react-router-dom, Node.Js
+- Bootstrap
 - authentication with bcrypt and jsonwebtoken
 - [Socket.IO](https://socket.io/) is a JavaScript library for realtime web applications. It enables realtime, bi-directional communication between web clients and servers.
 
