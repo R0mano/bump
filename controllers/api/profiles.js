@@ -13,7 +13,7 @@ async function index(req, res) {
 
 async function createContact(req, res) {
   const newlyCreatedContact = await Profile.findOne({username: req.body.contact});
-  const profile = await (await Profile.findById(req.body.profileId));
+  const profile =  await Profile.findById(req.body.profileId);
   if (newlyCreatedContact && !profile.contacts.includes(newlyCreatedContact._id)) {
     profile.contacts.push(newlyCreatedContact._id);
     profile.save();

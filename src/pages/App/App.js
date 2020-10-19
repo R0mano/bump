@@ -9,7 +9,7 @@ import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
-import { PromiseProvider } from "mongoose";
+import { PromiseProvider, set } from "mongoose";
 let socket;
 // const END_POINT = 'http://localhost:3001/';
 const END_POINT = 'https://ibump.herokuapp.com/';
@@ -20,6 +20,7 @@ function App() {
   const [messages, setMessages] = useState({chat: [], from: '', to: '', body: '' });
   const history = useHistory();
   const [recipient, setRecipient] = useState('')
+
   
   useEffect( () => {
     if (user) {
@@ -89,7 +90,9 @@ function App() {
 
   const handleAddContact = async (newContactData) => {
     const newContact = await profileService.addNewContact(newContactData);
+    if( newContact.contacts.length > profile.contacts.length) {
     setProfile(newContact);
+    }
   }
 
   function handleLogout() {

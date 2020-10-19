@@ -37,7 +37,7 @@ function MessageHistory(props) {
        />
     )
       :
-      <p>Select a contact</p>
+      <p>No messages yet</p>
   }
 </div>
   :
