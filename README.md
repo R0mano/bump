@@ -13,7 +13,7 @@ iBump is a real time messenger application. Send and receive messages with no de
 </br>
 </br>
 </br>
-![app-screenshot]https://i.imgur.com/cCx75JE.png)
+![app-screenshot](https://i.imgur.com/cCx75JE.png)
 
 
 ### `npm run build`
