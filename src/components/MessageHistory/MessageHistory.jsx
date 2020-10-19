@@ -43,7 +43,7 @@ function MessageHistory(props) {
   :
   <div  className='message-history' >
     <h2>
-      Loading...
+      loading...
     </h2>
   </div>
 

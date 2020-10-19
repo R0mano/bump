@@ -13,7 +13,7 @@ export default function ChatPage(props) {
         profile={props.profile}
       />
 
-      <h1>Chat {props.recipient ? `with ${props.recipient}` : ''} </h1>
+      <h1>Chat{props.recipient ? ` with ${props.recipient}` : ' - No contact selected'} </h1>
 <div className='chat-wrapper' >
       {props.profile && props.messages.chat.length ? (
         <MessageHistory
@@ -23,7 +23,7 @@ export default function ChatPage(props) {
           recipient={props.recipient}
         />
       ) : (
-        <p>loading...</p>
+<div className='chat-wrapper' >No messages yet</div>
       )}
 
       <NewMessageForm

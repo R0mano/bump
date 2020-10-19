@@ -1,6 +1,7 @@
 .message-history{
   padding: 16px;
   max-height: calc(100vh - 200px);
+  min-height: 75vh;;
   overflow: scroll;
   display: flex;
   flex-direction: column;
