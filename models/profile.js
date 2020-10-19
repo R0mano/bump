@@ -3,15 +3,6 @@ const User = require('./user');
 const Schema = mongoose.Schema;
 
 
-// const pictureSchema = new Schema({
-//   type: String,
-
-// }, {
-//   timestamps: true,
-// });
-
-
-
 const profileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -22,7 +13,6 @@ const profileSchema = new Schema({
     required: true,
     maxlength: 50,
     unique: true
-    // get name from user.name?
   },
   dob: {
     type: Date,

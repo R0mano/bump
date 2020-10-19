@@ -53,7 +53,6 @@ class LoginPage extends Component {
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button className="btn btn-default button">Log In</button>&nbsp;&nbsp;&nbsp;
-              {/* <Link to='/'>Cancel</Link> */}
               <Link to='/signup'>Signup</Link>
 
             </div>
@@ -62,7 +61,6 @@ class LoginPage extends Component {
         <Switch>
         <Route exact path='/signup' render={() =>
           <SignupPage
-          // history={history}
           handleSignupOrLogin={this.props.handleSignupOrLogin}
           />
       }

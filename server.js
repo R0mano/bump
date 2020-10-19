@@ -6,7 +6,6 @@ const http = require('http');
 const io = require('./config/io');
 const app = express();
 
-// require('socket.io');
 require('dotenv').config();
 require('./config/database');
 

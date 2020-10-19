@@ -9,7 +9,6 @@ function signup(user) {
     body: JSON.stringify(user)
   })
   .then(res => {
-    // console.log(res, 'this is the res Object');
     if (res.ok) return res.json();
     // Probably a duplicate email
     throw new Error('Email already taken!');
@@ -18,7 +17,6 @@ function signup(user) {
 }
 
 function getUser() {
-  // console.log('hitting get user');
   return tokenService.getUserFromToken();
 }
 

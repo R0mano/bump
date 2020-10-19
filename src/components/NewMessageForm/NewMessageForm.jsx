@@ -21,6 +21,7 @@ function NewMessageForm(props) {
   return(
     <div className='NewMessageForm'>
 
+  <form onSubmit={handleSubmit}>
 <div className="input-group mb-3 mx-auto col-10">
     <input
     className="form-control col-10"
@@ -28,14 +29,15 @@ function NewMessageForm(props) {
     placeholder="New Message"
     aria-label="New Message"
     name="body"
-    autofocus
-    // value={props.messages.body}
+    autoFocus={true}
+    value={props.messages.body}
     onChange={handleChange}
   />
-  <button className="form-control btn btn-primary col-2" type="submit" disabled={isValid()} onClick={handleSubmit}>
+  <button className="form-control btn btn-primary col-2" type="submit" disabled={isValid()}>
     Send
   </button>
 </div>
+  </form>
 
 
 

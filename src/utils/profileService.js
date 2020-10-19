@@ -7,14 +7,11 @@ export default {
 const BASE_URL = '/api/profiles';
 
 function getProfile(userId) {
-  // console.log(userId, 'this is user -----------------------------------------------------------------------------------------');
   return fetch(`${BASE_URL}/${userId}`)
   .then(res => res.json());
-  
 }
 
 function addNewContact(contact) {
-  // console.log(contact, 'this is contact -----------------------------------------------------------------------------------------');
   return fetch(BASE_URL, {
     method: 'POST',
     headers: {'content-type': 'application/json'},
@@ -23,7 +20,6 @@ function addNewContact(contact) {
 }
 
 function getContacts(profileId) {
-  console.log('hitting profileServie');
   return fetch(`${BASE_URL}/contacts/${profileId}`)
   .then(res => res.json());
 }

@@ -21,7 +21,6 @@ export default function ChatPage(props) {
           messages={props.messages}
           handleMessageSubmit={props.handleMessageSubmit}
           recipient={props.recipient}
-          // FilteredMessages={props.FilteredMessages}
         />
       ) : (
         <p>loading...</p>
@@ -33,10 +32,6 @@ export default function ChatPage(props) {
         handleMessageBodyChange={props.handleMessageBodyChange}
         handleMessageSubmit={props.handleMessageSubmit}
       />
-      {/* <h1>console.log(props.profile.username, 'profile')</h1> */}
-      {/* <h1>{props.profile.username}</h1>
-      <h1>{props.profile.dob}</h1>
-      <h1>{props.profile.bio}</h1>       */}
     </div>
   </div>
   ) : (

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from "react-router-dom";
 import "./ContaclListItem.css";
 
 
@@ -8,14 +7,9 @@ export default ContactListItem;
 
 function ContactListItem(props) {
 
-
-  
-
-  function handleClick(e) {
-    console.log(e.target.innerText, ' Contact being clicked');
+  function handleClick() {
     props.handleContactSelect(props.contact);
   }
-
 
   return (
     <div className='contact-item'>
@@ -26,7 +20,6 @@ function ContactListItem(props) {
           <h4>{props.contact.username} &nbsp;&nbsp;|&nbsp;&nbsp;<span><small>{props.contact.bio}</small></span></h4>
         </div>
       </div>
-       
       </div>
     </div>
   )

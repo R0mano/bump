@@ -1,5 +1,10 @@
 .NewMessageForm{
-  /* margin: 20px 0; */
 padding-top: 10px;
-/* position: absolute; */
+}
+
+@media only screen and (max-width: 800px) {
+  .NewMessageForm{
+    width: 100%;
+  }
+
 }

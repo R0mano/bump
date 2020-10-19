@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import profileService from '../../utils/profileService';
 import ContactListItem from '../ContaclListItem/ContaclListItem';
 
 export default ContactList;
 
 function ContactList(props) {
-  // const [contacts, setContact] = useState([]);
-
-  // useEffect(  () => {
-  //   console.log(props.profile);
-  //   if(props.profile) {
-  //     console.log(props.profile._id);
-  //     const contactList = await profileService.getContacts(props.profile._id);
-  //     console.log(contactList, ' contactList');
-  //     setContact(contactList);
-    
-  //   }
-  //   return () => {
-  //     console.log('contacts fetched');
-  //   }
-  // }, []);
-
     let contactList = (props.profile) ?
     <div>
 
@@ -29,7 +12,6 @@ function ContactList(props) {
          contact={contact}
          handleContactSelect={props.handleContactSelect}
          key={contact._id}
-            
          />
       )}
   </div>
@@ -39,10 +21,8 @@ function ContactList(props) {
         Loading...
       </h2>
     </div>
-  
 
-
-  return(
+return(
     <div>
       {contactList}
     </div>

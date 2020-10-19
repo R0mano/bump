@@ -20,13 +20,11 @@ function getToken() {
       token = null;
     }
   }
-  // console.log(token, 'token in getToken function');
   return token;
 }
 
 function getUserFromToken() {
   const token = getToken();
-  // console.log(token, 'this is the token');
   return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
 

@@ -10,9 +10,7 @@ function ProfilePage(props) {
   let page = props.profile ?
   <div>
     
-    {/* <h1>console.log(props.profile.username, 'profile')</h1> */}
     <h3>Username: {props.profile.username}</h3>
-    {/* <h3>{props.profile.dob}</h3> */}
     <h3>About you: {props.profile.bio}</h3>      
     </div>
     :

@@ -76,11 +76,6 @@ class SignupForm extends Component {
               <input type="text" className="form-control" placeholder="A little bit about yourself" value={this.state.bio} name="bio" onChange={this.handleChange} />
             </div>
             </div>
-            {/* <div className="form-group">
-            <div className="col-sm-12">
-              <input type="file" className="form-control" placeholder="Upload an Avatar" value={this.state.avatar} name="avatar" onChange={this.handleChange} />
-            </div>
-          </div> */}
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button className="btn btn-default" disabled={this.isFormInvalid()}><span>Sign Up</span></button>&nbsp;&nbsp;

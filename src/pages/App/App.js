@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import io from 'socket.io-client';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
@@ -10,7 +10,6 @@ import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
 import { PromiseProvider } from "mongoose";
-// import ProfilePage from "../ProfilePage/ProfilePage";
 let socket;
 // const END_POINT = 'http://localhost:3001/';
 const END_POINT = 'https://ibump.herokuapp.com/';
@@ -23,21 +22,14 @@ function App() {
   const [recipient, setRecipient] = useState('')
   
   useEffect( () => {
-    console.log('THIS USEEFFECT FIRES');
     if (user) {
-      // console.log('hitting useEffect', user);
       profileService.getProfile(user._id)
       .then(data => {
-        // console.log(data, 'this is the data');
         setProfile(data);
       });
     } else {
       setProfile(null);
     }
-    // return () => {
-    //   // console.log('profile loaded');
-    //   setProfile(null)
-    // }
   }, [user]);
   
   useEffect(() => {
@@ -45,18 +37,14 @@ function App() {
 
     // Fetching messages
     socket.on('init', (msg) => {
-      console.log(msg, 'msg inside App.js when socket.io init');
       setMessages({chat: [...msg]})
     });
 
     //Update the chat if new message
     socket.on('push', (msg) => {
-      console.log(msg, ' msg received in App.js');
       setMessages((prevmessages) => {return {...prevmessages, chat: [...prevmessages.chat, msg], body:''}})
     })
   }, []);
-
-  
 
   const handleMessageBodyChange = (e) => {
     const formData = {...messages, ...{
@@ -67,11 +55,6 @@ function App() {
     setMessages(formData);
   }
 
-
-  // function handleName(e) {
-  //   setMessages({to: e.target.value})
-  // }
-
   function handleMessageSubmit(e) {
     e.preventDefault();
 
@@ -81,8 +64,6 @@ function App() {
       to: messages.to, 
       body: messages.body
     });
-    console.log('Message has been sent');
-    console.log(messages, 'this is the messages');
     setMessages(prevMessages => {return {
       chat: [...prevMessages.chat, {
         from: prevMessages.from,
@@ -98,45 +79,28 @@ function App() {
   
 
   function handleContactSelect(contact) {
-    console.log(contact._id, ' Inside App handleContactSelect');
     setMessages({
       ...messages, 
       ...{to: contact._id}
-      // chat: [...messages.chat],
-      // from: profile._id,
-      // to: contactUsername,
-      // body: {...messages.body}
     })
     setRecipient(contact.username)
     history.push('/chat')
-    // redirectToChat()
-    // console.log(messages);
   }
 
   const handleAddContact = async (newContactData) => {
-    // console.log(newContactData, 'newContactData------');
-    
     const newContact = await profileService.addNewContact(newContactData);
-    // console.log(newContact, 'the new contact');
     setProfile(newContact);
-    // console.log(profile, ' The brand new Profile State');
-    // () => PromiseProvider.history.push('/')
   }
 
   function handleLogout() {
     userService.logout();
     setUser(null);
     setProfile(null);
-
   }
 
   const handleSignupOrLogin = () => {
-    // console.log(user, 'this is the user in handleSignupOrLogin------------------------------------------------------------------------------');
     setUser(userService.getUser());
-    // console.log(user, "this is the user in handleSignupOrLogin");
   };
-
-
 
   return (
     <div className="App container container-fluid" id='chat' elevation={3}>
@@ -165,18 +129,22 @@ function App() {
           exact
           path="/profile"
           render={({ history }) => (
+            userService.getUser() ?
             <ProfilePage
               history={history}
               handleLogout={handleLogout}
               user={user}
               profile={profile}
               />
+              :
+              <Redirect to='/login' />
               )}
               />
         <Route
           exact
           path="/chat"
           render={({ history }) => (
+            userService.getUser() ?
             <ChatPage
             history={history}
             handleLogout={handleLogout}
@@ -187,12 +155,15 @@ function App() {
             handleMessageBodyChange={handleMessageBodyChange}
             handleMessageSubmit={handleMessageSubmit}
             />
+            :
+            <Redirect to='/login' />
             )}
             />
         <Route
           exact
           path="/contacts"
           render={({ history }) => (
+            userService.getUser() ?
             <ContactPage
             handleLogout={handleLogout}
             history={history}
@@ -202,6 +173,8 @@ function App() {
             profile={profile}
             handleLogout={handleLogout}
             />
+            :
+            <Redirect to='/login' />
           )}
         />
       </Switch>
@@ -215,6 +188,3 @@ function App() {
 }
 
 export default App;
-
-
-{/* <ContactPage user={user} profile={profile} /> */}

@@ -27,17 +27,12 @@ async function login(req, res) {
 }
 
 async function signup(req, res) {
-  // const user = {
-  //   email: req.body.email,
-  //   password: req.body.password
-  // }
-  // console.log(req.body, 'req.body in controllers/users.js signup function');
+
   const user = new User({
     email: req.body.email,
     password: req.body.password
   });
-  // console.log(user, 'this is the user');
-  // console.log(profile, 'this is the profile');
+
   try {
     await user.save( async function(err) {
       if(err) {console.log(err);}
@@ -53,9 +48,7 @@ async function signup(req, res) {
               if(err) {console.log(err);} 
               res.status(200).json({token, profile});
             })
-            // console.log(token, 'this is the token inside signup');
           });
-    // TODO: Send back a JWT instead of the user
   } catch (err) {
     console.log('this is a catch error inside signup', err);
     // Probably a duplicate email
