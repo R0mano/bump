@@ -18,8 +18,8 @@ function NavBar(props) {
     </div>
   </div>
   <div className="navbar collapse navbar-collapse right">
-  <span className='NavBar-welcome'>WELCOME, {props.profile.username}&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-  <Link className='link' to='' onClick={props.handleLogout} className='NavBar-link'>LOG OUT</Link>
+  <span className='NavBar-welcome'>Welcome {props.profile.username}&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <Link className='link' to='' onClick={props.handleLogout} className='NavBar-link'>Log Out</Link>
   </div>
 </nav>
     </div>
