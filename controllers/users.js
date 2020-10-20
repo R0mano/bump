@@ -41,7 +41,6 @@ async function signup(req, res) {
               username: req.body.username,
               dob: req.body.dob,
               bio: req.body.bio,
-              avatar: req.body.avatar
             })
             const token = createJWT(user);
             await profile.save(function(err) {

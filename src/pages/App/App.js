@@ -90,9 +90,9 @@ function App() {
 
   const handleAddContact = async (newContactData) => {
     const newContact = await profileService.addNewContact(newContactData);
-    if( newContact.contacts.length > profile.contacts.length) {
+    // if( newContact.contacts.length > profile.contacts.length) {
     setProfile(newContact);
-    }
+    // }
   }
 
   function handleLogout() {

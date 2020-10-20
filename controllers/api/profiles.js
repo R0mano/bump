@@ -16,8 +16,9 @@ async function createContact(req, res) {
   const profile =  await Profile.findById(req.body.profileId);
   if (newlyCreatedContact && !profile.contacts.includes(newlyCreatedContact._id)) {
     profile.contacts.push(newlyCreatedContact._id);
-    profile.save();
   } 
+  profile.save();
+  // console.log(profile);
   res.status(200).json(profile);
 }
 
