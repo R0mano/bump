@@ -35,4 +35,4 @@ iBump is a real time messenger application. Send and receive messages with no de
 
 ## [Trello board](https://trello.com/b/1Uu14lCG/bump)
 
-# [iBump](https://ibump.herokuapp.com/login)
+# [=> iBump](https://ibump.herokuapp.com/login)
