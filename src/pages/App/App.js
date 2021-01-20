@@ -9,10 +9,9 @@ import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
-import { PromiseProvider, set } from "mongoose";
 let socket;
-// const END_POINT = 'http://localhost:3001/';
-const END_POINT = 'https://ibump.herokuapp.com/';
+const END_POINT = 'http://localhost:3001/';
+// const END_POINT = 'https://ibump.herokuapp.com/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -89,10 +88,12 @@ function App() {
   }
 
   const handleAddContact = async (newContactData) => {
-    const newContact = await profileService.addNewContact(newContactData);
-    // if( newContact.contacts.length > profile.contacts.length) {
-    setProfile(newContact);
-    // }
+    const profileWithNewContact = await profileService.addNewContact(newContactData);
+    console.log(profileWithNewContact, ' profileWithNewContact')
+    // if( profileWithNewContact.contacts.length === profile.contacts.length) {
+      
+    //   }
+      setProfile(profileWithNewContact);
   }
 
   function handleLogout() {
