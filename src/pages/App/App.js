@@ -48,7 +48,7 @@ function App() {
     socket.on('push', (msg) => {
       setMessages((prevmessages) => {return {...prevmessages, chat: [...prevmessages.chat, msg], body:''}})
     })
-  }, []);
+  });
 
   const handleMessageBodyChange = (e) => {
     const formData = {...messages, ...{
