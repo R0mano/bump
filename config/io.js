@@ -3,7 +3,7 @@ const Message = require('../models/message');
 
 const users = {};
 
-console.log('we are in oi.js')
+console.log('we are in io.js')
 
 io.on('connection', socket => {
   // console.log('Socket.io has connected')
