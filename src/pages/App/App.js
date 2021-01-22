@@ -17,8 +17,8 @@ function App() {
   const [user, setUser] = useState(userService.getUser());
   const [profile, setProfile] = useState(null);
   const [messages, setMessages] = useState({chat: [], from: '', to: '', body: '' });
-  const history = useHistory();
   const [recipient, setRecipient] = useState('')
+  const history = useHistory();
 
   
   useEffect( () => {
@@ -89,11 +89,7 @@ function App() {
 
   const handleAddContact = async (newContactData) => {
     const profileWithNewContact = await profileService.addNewContact(newContactData);
-    console.log(profileWithNewContact, ' profileWithNewContact')
-    // if( profileWithNewContact.contacts.length === profile.contacts.length) {
-      
-    //   }
-      setProfile(profileWithNewContact);
+    setProfile(profileWithNewContact);
   }
 
   function handleLogout() {

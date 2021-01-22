@@ -24,7 +24,5 @@ function ContactList(props) {
         );
     }
 
-    // useEffect(() => {}, [props.profile]);
-
     return <div>{contactList}</div>;
 }
