@@ -47,6 +47,7 @@ function App() {
 
     //Update the chat if new message
     socket.on('push', (msg) => {
+      console.log(msg, ' incoming message')
       setMessages((prevmessages) => {return {...prevmessages, chat: [...prevmessages.chat, msg], body:''}})
       console.log('Message received')
     })
@@ -63,6 +64,11 @@ function App() {
 
   function handleMessageSubmit(e) {
     e.preventDefault();
+    let outboundMessage = {
+      from: profile._id,
+      to: messages.to, 
+      body: messages.body
+    }
 
     //Send the new message to the server
     socket.emit('message', {
