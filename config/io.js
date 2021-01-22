@@ -13,11 +13,7 @@ io.on('connection', socket => {
       // console.log('Socket.io has initiated')
     })
   socket.on('message', async (msg) => {
-    const newMessage = await Message.create(function (err) {
-      if (err) {
-        console.log(err)
-      }
-    })
+    const newMessage = await Message.create(msg)
     console.log('newMessaged received from sender by the server')
     socket.broadcast.emit('push', newMessage);
     console.log(`newMessaged: ${newMessage} sent by server to recipient`)

@@ -76,7 +76,7 @@ function App() {
       to: messages.to, 
       body: messages.body
     });
-    console.log(`${outboundMessage} Message has been sent`)
+    console.log({...outboundMessage}, 'Message has been sent')
     setMessages(prevMessages => {return {
       chat: [...prevMessages.chat, {
         from: prevMessages.from,
