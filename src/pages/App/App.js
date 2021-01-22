@@ -9,9 +9,9 @@ import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
-let socket;
 // const END_POINT = 'http://localhost:3001/';
 const END_POINT = 'https://ibump.herokuapp.com/';
+let socket = io(END_POINT);
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -37,7 +37,8 @@ function App() {
   }, [user]);
   
   useEffect(() => {
-    socket = io(END_POINT);
+    // socket = io(END_POINT);
+    console.log(socket, ' socket END_POINT')
 
     // Fetching messages
     socket.on('init', (msg) => {
@@ -47,8 +48,9 @@ function App() {
     //Update the chat if new message
     socket.on('push', (msg) => {
       setMessages((prevmessages) => {return {...prevmessages, chat: [...prevmessages.chat, msg], body:''}})
+      console.log('Message received')
     })
-  });
+  }, []);
 
   const handleMessageBodyChange = (e) => {
     const formData = {...messages, ...{
@@ -68,6 +70,7 @@ function App() {
       to: messages.to, 
       body: messages.body
     });
+    console.log('Message has been sent')
     setMessages(prevMessages => {return {
       chat: [...prevMessages.chat, {
         from: prevMessages.from,
