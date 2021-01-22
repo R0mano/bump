@@ -10,8 +10,8 @@ import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
 let socket;
-const END_POINT = 'http://localhost:3001/';
-// const END_POINT = 'https://ibump.herokuapp.com/';
+// const END_POINT = 'http://localhost:3001/';
+const END_POINT = 'https://ibump.herokuapp.com/';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -25,7 +25,11 @@ function App() {
     if (user) {
       profileService.getProfile(user._id)
       .then(data => {
+        console.log(data, 'The Data')
         setProfile(data);
+        // if(!profile) {
+        //   handleLogout()
+        // }
       });
     } else {
       setProfile(null);
@@ -89,7 +93,8 @@ function App() {
 
   const handleAddContact = async (newContactData) => {
     const profileWithNewContact = await profileService.addNewContact(newContactData);
-    setProfile(profileWithNewContact);
+    setProfile(profileWithNewContact.profile);
+    return profileWithNewContact.message
   }
 
   function handleLogout() {

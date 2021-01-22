@@ -6,6 +6,7 @@ export default AddContactForm;
 
 function AddContactForm(props) {
   const [contact, setContact] = useState('');
+  const [message, setMessage] = useState('')
 
   function handleChange(e) {
     setContact(e.target.value)
@@ -13,8 +14,13 @@ function AddContactForm(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await props.handleAddContact({contact: contact, profileId: props.profile._id});
+    let newMessage = await props.handleAddContact({contact: contact, profileId: props.profile._id});
+    setMessage(newMessage);
   }
+
+  useEffect(() => {
+    setMessage('')
+  }, [contact])
 
   return (
     <div className='AddContactForm' >
@@ -22,6 +28,7 @@ function AddContactForm(props) {
         <input className='form-control col-10' type="text" name='contact' placeholder="Contact's Username" value={contact} onChange={handleChange} required/>
         <button className="form-control col-2 btn btn-sm btn-primary" >Add Contact</button>
       </form>
+      <p><span>{message}</span></p>
     </div>
   )
 }
