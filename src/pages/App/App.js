@@ -10,8 +10,8 @@ import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
 // const END_POINT = 'http://localhost:3001/';
-const END_POINT = 'https://ibump.herokuapp.com/';
-let socket = io(END_POINT);
+// const END_POINT = 'https://ibump.herokuapp.com/';
+let socket = io();
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
