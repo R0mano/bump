@@ -6,17 +6,13 @@ const users = {};
 console.log('we are in io.js')
 
 io.on('connection', socket => {
-  // console.log('Socket.io has connected')
   Message.find({}).sort({createdAt: -1})
     .limit(100).exec((err, msg) => {
       socket.emit('init', msg);
-      // console.log('Socket.io has initiated')
     })
   socket.on('message', async (msg) => {
     const newMessage = await Message.create(msg)
-    console.log('newMessaged received from sender by the server')
     socket.broadcast.emit('push', newMessage);
-    console.log(`newMessaged: ${newMessage} sent by server to recipient`)
   });
   socket.on('disconnect', () => {
     delete users[socket.id]
