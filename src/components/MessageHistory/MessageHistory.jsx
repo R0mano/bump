@@ -9,9 +9,7 @@ function MessageHistory(props) {
 
   const filteredMessages = props.messages.chat.filter((message) => {
     return message.from === props.messages.to
-      && message.to === props.profile._id
-      || message.to === props.messages.to
-      && message.from === props.profile._id
+    || message.to === props.messages.to
   })
 
   useEffect(()=> {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ContactListItem from "../ContaclListItem/ContaclListItem";
 
 export default ContactList;

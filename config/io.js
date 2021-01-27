@@ -6,8 +6,12 @@ const users = {};
 console.log('we are in io.js')
 
 io.on('connection', socket => {
-  Message.find({}).sort({createdAt: -1})
-    .limit(100).exec((err, msg) => {
+  const profileId = socket.handshake.query.profileId
+  // console.log(profileId, ' <----socket.handshake.query.profileId received io.on(connection)')
+  Message.find( { $or: [{ 'from': profileId }, {'to': profileId}] } ).sort({createdAt: -1})
+  .limit(500).exec((err, msg) => {
+    // console.log(msg, ' All messages retrieved from the query')
+    // console.log(msg.length, ' Number of messages retrieved from the query')
       socket.emit('init', msg);
     })
   socket.on('message', async (msg) => {

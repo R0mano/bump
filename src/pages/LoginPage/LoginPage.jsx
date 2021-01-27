@@ -23,8 +23,8 @@ class LoginPage extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await userService.login(this.state);
-      this.props.handleSignupOrLogin();
+      let profile = await userService.login(this.state);
+      this.props.handleSignupOrLogin(profile);
       // Successfully signed up - show GamePage
       this.props.history.push('/');
     } catch (err) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-import { Link } from 'react-router-dom';
 import './ProfilePage.css';
 
 export default ProfilePage;
@@ -21,7 +20,7 @@ function ProfilePage(props) {
 
   return(
     <div className='ProfilePage' >
-      <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile} handleLogout={props.handleLogout}/>
+      <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile}/>
       <h1>Profile</h1>
       {page}
     </div>
