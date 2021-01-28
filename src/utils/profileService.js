@@ -4,7 +4,7 @@ export default {
   getContacts
 }
 
-const BASE_URL = '/api/profiles';
+const BASE_URL = '/api/profiles'; 
 
 function getProfile(userId) {
   return fetch(`${BASE_URL}/${userId}`)

@@ -1,6 +1,7 @@
 .contact-item{
   margin: 10px;
   text-align: left;
+  cursor: pointer;
 }
 
 small{

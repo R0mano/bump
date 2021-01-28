@@ -2,6 +2,10 @@
   color: white;
 }
 
-h1{
+.ProfilePage h1{
   margin-bottom: 2rem;
+}
+
+.ProfilePage .profile-picture {
+  size: 10vw;
 }

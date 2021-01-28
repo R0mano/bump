@@ -13,9 +13,7 @@ class LoginPage extends Component {
   };
 
   handleChange = (e) => {
-    // Implement in an elegant way
     this.setState({
-      // Using computed property name
       [e.target.name]: e.target.value
     });
   }
@@ -23,13 +21,14 @@ class LoginPage extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let profile = await userService.login(this.state);
-      this.props.handleSignupOrLogin(profile);
-      // Successfully signed up - show GamePage
+      await userService.login(this.state);
+      this.props.handleSignupOrLogin();
+      // Successfully signed up, redirect to home page
       this.props.history.push('/');
     } catch (err) {
       // Do not 'Alert' in project
       // Show a modal or some UI instead
+      console.log(err)
       alert('Invalid login');
     }
   }

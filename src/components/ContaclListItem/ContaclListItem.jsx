@@ -13,7 +13,6 @@ function ContactListItem(props) {
 
   return (
     <div className='contact-item'>
-      {/* <h5>ContactListItem component</h5> */}
       <div className='ContactItem contact-item' onClick={handleClick}>
       <div class="card">
         <div class="card-body">

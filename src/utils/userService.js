@@ -13,9 +13,8 @@ function signup(user) {
     // Probably a duplicate email
     throw new Error('Email already taken!');
   })
-  .then(({token, profile}) => {
-    tokenService.setToken(token)
-    return profile
+  .then(({token}) => {
+    tokenService.setToken(token);
   });
 }
 
@@ -34,15 +33,12 @@ function login(creds) {
     body: JSON.stringify(creds)
   })
   .then(res => {
-    console.log(res, ' <- respond object upon loging in')
-    console.log(res.ok, ' <- res.ok')
     if (res.ok) return res.json();
     // Probably a duplicate email
     throw new Error('Bad Credentials!');
   })
-  .then(({token, profile}) => {
+  .then(({ token }) => {
     tokenService.setToken(token)
-    return profile
   });
 }
 

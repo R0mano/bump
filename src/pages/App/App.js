@@ -9,40 +9,49 @@ import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
 import "./App.css";
-// const END_POINT = 'http://localhost:3001/';
-// const END_POINT = 'https://ibump.herokuapp.com/';
+
 let socket;
 
 function App() {
     const [user, setUser] = useState(userService.getUser());
     const [profile, setProfile] = useState(null);
-    const [profileId, setProfileId] = useState(null)
-    const [messages, setMessages] = useState({ chat: [], from: "", to: "",body: ""});
+    const [IsReadyForSocket, setIsReadyForSocket] = useState(false);
+    const [messages, setMessages] = useState({
+        chat: [],
+        from: "",
+        to: "",
+        body: "",
+    });
     const [recipient, setRecipient] = useState("");
     const history = useHistory();
 
     useEffect(() => {
-      setProfileId(() => {
-        let id = profile ? profile._id : null
-        console.log(id, ' id')
-        return id
-      })
-    }, [profile])
+        if (user) {
+            profileService
+                .getProfile(user._id)
+                .then((data) => {
+                    setProfile(data);
+                })
+                .then(() => {
+                    setIsReadyForSocket(true);
+                });
+        } else {
+            setProfile(null);
+        }
+    }, [user]);
 
     useEffect(() => {
-      if(profileId) {
-        //Initiate Socket after profile is set
+        if (IsReadyForSocket) {
+          
             socket = io({
-              query: {
-                profileId: profileId
-              }
-            })
-            console.log(socket.query, ' <-socket.query')
+                query: {
+                    profileId: profile._id,
+                },
+            });
 
             // Fetching messages
             socket.on("init", (msg) => {
-              console.log(socket, ' socket')
-                    setMessages({ chat: [...msg] });
+                setMessages({ chat: [...msg] });
             });
 
             //Update the chat if new message
@@ -55,9 +64,8 @@ function App() {
                     };
                 });
             });
-          }
-          // return handleLogout()
-    }, [profileId])
+        }
+    }, [IsReadyForSocket]);
 
     const handleMessageBodyChange = (e) => {
         const formData = {
@@ -70,7 +78,7 @@ function App() {
         setMessages(formData);
     };
 
-    function handleMessageSubmit(e) {
+    const handleMessageSubmit = (e) => {
         e.preventDefault();
         //Send the new message to the server
         socket.emit("message", {
@@ -96,7 +104,7 @@ function App() {
         });
     }
 
-    function handleContactSelect(contact) {
+    const handleContactSelect = (contact) => {
         setMessages({
             ...messages,
             ...{ to: contact._id },
@@ -113,17 +121,23 @@ function App() {
         return profileWithNewContact.message;
     };
 
-    function handleLogout() {
+    const handleLogout = () => {
         userService.logout();
         setProfile(null);
         setUser(null);
+        setIsReadyForSocket(false);
+        setMessages({
+          chat: [],
+          from: "",
+          to: "",
+          body: "",
+      });
+      setRecipient("")
+      socket.close()
     }
 
-    const handleSignupOrLogin = (prof) => {
+    const handleSignupOrLogin = () => {
         setUser(userService.getUser());
-        // console.log(prof, ' prof')
-        setProfile(prof);
-        // socketSetUp(profile._id)
     };
 
     return (
