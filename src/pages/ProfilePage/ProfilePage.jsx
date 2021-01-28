@@ -8,7 +8,7 @@ function ProfilePage(props) {
 
   let page = props.profile ?
   <div>
-    <div className='profile-picture'><img src="https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/51989087_10156471471397885_8619373629286645760_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=UvBFRPJC1zUAX9kvZnj&_nc_ht=scontent-sjc3-1.xx&oh=5b67a2ff93a18e26a678d684d947dc2f&oe=6035D76D" alt="profile-picture"/></div>
+    <div className='profile-picture'><img src=""/></div>
     <h3>Username: {props.profile.username}</h3>
     <h3>About you: {props.profile.bio}</h3>      
     </div>
