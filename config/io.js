@@ -3,20 +3,17 @@ const Message = require('../models/message');
 
 const users = {};
 let profileId;
-console.log(profileId, ' profileId')
 
-console.log('we are in io.js')
+console.log('Connected to socket.io()')
 
 io.on('connection', socket => {
-  console.log(`socket handshake received with profileId = ${socket.handshake.query.profileId}`)
+  console.log('connected to socket')
+
   profileId = socket.handshake.query.profileId
-  console.log(profileId, ' <----socket.handshake.query.profileId received io.on(connection)')
 
   if(profileId) {
     Message.find( { $or: [{ 'from': profileId }, {'to': profileId}] } ).sort({createdAt: -1})
     .limit(500).exec((err, msg) => {
-      // console.log(msg, ' All messages retrieved from the query')
-      console.log(msg.length, ' Number of messages retrieved from the query')
         socket.emit('init', msg);
       })
     socket.on('message', async (msg) => {
@@ -24,10 +21,7 @@ io.on('connection', socket => {
       socket.broadcast.emit('push', newMessage);
     });
     socket.on('disconnect', () => {
-      console.log('Disconnection request.............................')
-      // socket.handshake.query.profileId = null;
       delete users[socket.id]
-      delete users[socket.handshake.query.profileId]
       io.emit('disconnected', socket.id)
     });
   }

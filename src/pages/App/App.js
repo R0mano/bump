@@ -8,6 +8,7 @@ import ChatPage from "../ChatPage/ChatPage";
 import ContactPage from "../ContactPage/ContactPage";
 import userService from "../../utils/userService";
 import profileService from "../../utils/profileService";
+import EditProfilePage from "../EditProfilePage/EditProfilePage";
 import "./App.css";
 
 let socket;
@@ -31,10 +32,10 @@ function App() {
                 .getProfile(user._id)
                 .then((data) => {
                     setProfile(data);
+                    setIsReadyForSocket({isReady: true, profileId: data._id});
                 })
-                .then(() => {
-                    setIsReadyForSocket(true);
-                });
+                // .then(() => {
+                // });
         } else {
             setProfile(null);
         }
@@ -42,10 +43,9 @@ function App() {
 
     useEffect(() => {
         if (IsReadyForSocket) {
-          
             socket = io({
                 query: {
-                    profileId: profile._id,
+                    profileId: IsReadyForSocket.profileId,
                 },
             });
 
@@ -56,10 +56,10 @@ function App() {
 
             //Update the chat if new message
             socket.on("push", (msg) => {
-                setMessages((prevmessages) => {
+                setMessages((prevMessages) => {
                     return {
-                        ...prevmessages,
-                        chat: [...prevmessages.chat, msg],
+                        ...prevMessages,
+                        chat: [...prevMessages.chat, msg],
                         body: "",
                     };
                 });
@@ -102,7 +102,7 @@ function App() {
                 body: "",
             };
         });
-    }
+    };
 
     const handleContactSelect = (contact) => {
         setMessages({
@@ -111,7 +111,7 @@ function App() {
         });
         setRecipient(contact.username);
         history.push("/chat");
-    }
+    };
 
     const handleAddContact = async (newContactData) => {
         const profileWithNewContact = await profileService.addNewContact(
@@ -121,23 +121,28 @@ function App() {
         return profileWithNewContact.message;
     };
 
+    const handleProfileUpdate = (updatedProfile) => {
+      console.log(updatedProfile, ' <------ updatedProfile')
+        setProfile(updatedProfile);
+    };
+
+    const handleSignupOrLogin = () => {
+        setUser(userService.getUser());
+    };
+
     const handleLogout = () => {
         userService.logout();
         setProfile(null);
         setUser(null);
         setIsReadyForSocket(false);
         setMessages({
-          chat: [],
-          from: "",
-          to: "",
-          body: "",
-      });
-      setRecipient("")
-      socket.close()
-    }
-
-    const handleSignupOrLogin = () => {
-        setUser(userService.getUser());
+            chat: [],
+            from: "",
+            to: "",
+            body: "",
+        });
+        setRecipient("");
+        socket.close();
     };
 
     return (
@@ -212,6 +217,22 @@ function App() {
                                 handleAddContact={handleAddContact}
                                 handleContactSelect={handleContactSelect}
                                 user={user}
+                                profile={profile}
+                            />
+                        ) : (
+                            <Redirect to="/login" />
+                        )
+                    }
+                />
+                <Route
+                    exact
+                    path="/edit-profile"
+                    render={({ history }) =>
+                        userService.getUser() ? (
+                            <EditProfilePage
+                                handleLogout={handleLogout}
+                                handleProfileUpdate={handleProfileUpdate}
+                                history={history}
                                 profile={profile}
                             />
                         ) : (

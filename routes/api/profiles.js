@@ -8,6 +8,7 @@ const profilesCtrl = require('../../controllers/api/profiles');
 router.use(require('../../config/auth'));
 router.get('/:userId', profilesCtrl.index);
 router.post('/', profilesCtrl.createContact);
+router.put('/update-profile/:profileId', profilesCtrl.update)
 
 
 
