@@ -11,12 +11,12 @@ import profileService from "../../utils/profileService";
 import EditProfilePage from "../EditProfilePage/EditProfilePage";
 import "./App.css";
 
-let socket;
+let socket = io();
 
 function App() {
     const [user, setUser] = useState(userService.getUser());
     const [profile, setProfile] = useState(null);
-    const [IsReadyForSocket, setIsReadyForSocket] = useState(false);
+    const [IsReadyForSocket, setIsReadyForSocket] = useState(null);
     const [messages, setMessages] = useState({
         chat: [],
         from: "",
@@ -43,13 +43,10 @@ function App() {
 
     useEffect(() => {
         if (IsReadyForSocket) {
-            socket = io({
-                query: {
-                    profileId: IsReadyForSocket.profileId,
-                },
-            });
+            //request messages for profileId
+            socket.emit('retrieve messages', {profileId: IsReadyForSocket.profileId});
 
-            // Fetching messages
+            // Receiving messages
             socket.on("init", (msg) => {
                 setMessages({ chat: [...msg] });
             });

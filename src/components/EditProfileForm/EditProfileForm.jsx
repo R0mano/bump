@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profileService from "../../utils/profileService";
-import classes from "./EditProfileForm.module.css";
+import "./EditProfileForm.css";
 
 const EditProfileForm = (props) => {
     const [newProfile, setNewProfile] = useState({
@@ -37,8 +37,8 @@ const EditProfileForm = (props) => {
                 props.profile._id
             );
             props.handleProfileUpdate(updatedProfile);
-            props.history.push('/profile')
-        } catch(err) {
+            props.history.push("/profile");
+        } catch (err) {
             console.log(err);
             props.updateMessage(
                 `Oops! It looks like something went wrong. ${err}`
@@ -47,18 +47,25 @@ const EditProfileForm = (props) => {
     };
 
     const isFormInvalid = () => {
-        return !(newProfile.username && newProfile.username !== props.profile.username)
+        return !(
+            newProfile.username &&
+            newProfile.username !== props.profile.username
+        );
     };
 
     return (
-        <div className="SignupForm">
+        <div className="EditProfileForm">
             <header className="header-footer header">
                 <h3>Update Profile</h3>
             </header>
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <div className="col-sm-12">
+                <div className="form-group row form-block">
+                    <label classname="col-sm-2 col-form-label field">
+                        Name
+                    </label>
+                    <div className="col-sm-10 field-container">
                         <input
+                            id="username"
                             type="text"
                             className="form-control"
                             placeholder="Name"
@@ -68,9 +75,11 @@ const EditProfileForm = (props) => {
                         />
                     </div>
                 </div>
-                <div className="form-group">
-                    <div className="col-sm-12">
+                <div className="form-group row form-block">
+                    <label classname="col-sm-2 col-form-label field">Bio</label>
+                    <div className="col-sm-10 field-container">
                         <input
+                            id="bio"
                             type="text"
                             className="form-control"
                             placeholder="A little bit about yourself"

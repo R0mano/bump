@@ -3,7 +3,8 @@ const Profile = require("../../models/profile");
 module.exports = {
     index,
     createContact,
-    update,
+    updateProfileInfo,
+    updateAvatar,
 };
 
 async function index(req, res) {
@@ -58,12 +59,9 @@ async function createContact(req, res) {
     }
 }
 
-async function update(req, res) {
-    console.log(req.body, 'req.body')
-    console.log(req.params, 'req.params')
+async function updateProfileInfo(req, res) {
     try{
         let profile = await Profile.findById(req.params.profileId)
-        console.log(profile, ' profile')
         profile.username = req.body.username;
         profile.bio = req.body.bio;
         await profile.populate("contacts").execPopulate()
@@ -72,13 +70,20 @@ async function update(req, res) {
                 console.log(err)
                 res.status(400).json(err)
             }
-            console.log(profile, ' Saved updated profile')
             res.status(200).json(profile)
         })
     }catch(err){
         console.log(err)
         res.status(400).json(err)
-
     }
+}
 
+async function updateAvatar(req, res) {
+    console.log(req.body, ' req.body')
+    console.log(req.body.message, ' req.body.message')
+    console.log(req.params, ' req.params')
+    try{
+    }catch(err){
+        console.log(err)
+    }
 }

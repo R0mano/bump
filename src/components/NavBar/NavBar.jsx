@@ -12,7 +12,7 @@ function NavBar(props) {
   <nav className="navbar navbar-expand ">
   <div  id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <NavLink exct to='/profile' className="nav-link link" href="#">Profile <span className="sr-only">(current)</span></NavLink>
+      <NavLink exact to='/profile' className="nav-link link" href="#">Profile <span className="sr-only">(current)</span></NavLink>
       <NavLink exact to='/chat' className="nav-link link" href="#">Chat</NavLink>
       <NavLink exact to='/contacts' className="nav-link link" href="#">Contacts</NavLink>
     </div>

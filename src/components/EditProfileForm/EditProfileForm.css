@@ -1,0 +1,22 @@
+.EditProfileForm{
+    min-width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  
+  }
+  
+  h3{
+    color: white;
+  }
+  
+  span{
+    color:white!important;
+  }
+
+  .form-block{
+      align-items: flex-end;
+      justify-content: flex-end;
+  }

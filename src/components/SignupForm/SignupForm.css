@@ -12,6 +12,12 @@ h3{
   color: white;
 }
 
-span{
+label{
   color:white!important;
+  /* display: flex;
+  flex-direction: row; */
+}
+input{
+  display: flex;
+  flex-direction: row;
 }

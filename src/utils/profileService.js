@@ -3,6 +3,7 @@ export default {
     addNewContact,
     // getContacts,
     updateProfile,
+    changeAvatar,
 };
 
 const BASE_URL = "/api/profiles";
@@ -25,17 +26,27 @@ function addNewContact(contact) {
 // }
 
 function updateProfile(newProfile, profileId) {
-    console.log("hitting profileService.updateProfile");
     return fetch(`${BASE_URL}/update-profile/${profileId}`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newProfile),
     }).then((res) => {
-      if(res.ok) {
-        console.log('res.ok!!!!!!!!')
-        console.log(res, ' the response object')
-        return res.json()
-      }
-      throw new Error('This username is already taken by someone else');
+        if (res.ok) {
+            return res.json();
+        }
+        throw new Error("This username is already taken by someone else");
+    });
+}
+
+function changeAvatar(formData, profileId) {
+    console.log(...formData, " formData inside profileService");
+    return fetch(`${BASE_URL}/update-avatar/${profileId}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({messaage: 'hello'}) ,
+    }).then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
     });
 }
