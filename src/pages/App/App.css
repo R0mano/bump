@@ -1,12 +1,11 @@
 .App {
   box-sizing: border-box;
   text-align: center;
-  max-width: 100vw;
+  max-width: 100%;
   height: 100vh;
   justify-content: center;
   background-color: #16213e;
   padding-bottom: 20px;
-
 }
 
 

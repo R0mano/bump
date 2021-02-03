@@ -1,4 +1,7 @@
+const fs = require("fs");
 const Profile = require("../../models/profile");
+const awsService = require("./aws");
+const multer = require("multer");
 
 module.exports = {
     index,
@@ -10,13 +13,13 @@ module.exports = {
 async function index(req, res) {
     try {
         await Profile.findOne({ user: req.params.userId })
-        .populate('contacts')
-        .exec((err, profile) => {
-          if (err) {
-            console.log(err);
-          }
-            res.status(200).json(profile);
-        });
+            .populate("contacts")
+            .exec((err, profile) => {
+                if (err) {
+                    console.log(err);
+                }
+                res.status(200).json(profile);
+            });
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
@@ -52,38 +55,93 @@ async function createContact(req, res) {
         await profile.populate("contacts").execPopulate();
         profile.save();
         res.status(200).json({ profile, message });
-        
-    } catch(err) {
-      console.log(err);
-      res.status(400).json(err);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
     }
 }
 
 async function updateProfileInfo(req, res) {
-    try{
-        let profile = await Profile.findById(req.params.profileId)
+    try {
+        let profile = await Profile.findById(req.params.profileId);
         profile.username = req.body.username;
         profile.bio = req.body.bio;
-        await profile.populate("contacts").execPopulate()
-        profile.save( (err, profile) => {
+        await profile.populate("contacts").execPopulate();
+        profile.save((err, profile) => {
             if (err) {
-                console.log(err)
-                res.status(400).json(err)
+                console.log(err);
+                res.status(400).json(err);
             }
-            res.status(200).json(profile)
-        })
-    }catch(err){
-        console.log(err)
-        res.status(400).json(err)
+            res.status(200).json(profile);
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
     }
 }
 
 async function updateAvatar(req, res) {
-    console.log(req.body, ' req.body')
-    console.log(req.body.message, ' req.body.message')
-    console.log(req.params, ' req.params')
-    try{
-    }catch(err){
-        console.log(err)
+    const profileId = req.params.profileId;
+    const avatarPath = req.file.path;
+    console.log(req.body, " req.body");
+    console.log(req.params, " req.params");
+    console.log(req.file, " req.file");
+    try {
+        const profile = await Profile.findById(profileId);
+        const avatarId = profile.avatar.split(".com/")[1];
+
+        awsService
+            .createNewAvatar(avatarPath)
+            .then(async (data) => {
+                console.log(data, " data returned inside profile.js Controler");
+                fs.unlinkSync(avatarPath); // Empty temp folder
+                profile.avatar = data.Location;
+                await profile.populate("contacts").execPopulate();
+                profile
+                    .save()
+                    .then((profile) => {
+                        console.log("Profile Avatar uploaded successfully");
+                        console.log(
+                            profile,
+                            " Updated Profile with Avatar. Ready to be sent back."
+                        );
+                        res.status(200).json(profile);
+                    })
+                    .then((json) => {
+                        try {
+                            if (avatarId) {
+                                awsService.deleteAvatar(avatarId);
+                            }
+                        } catch (err) {
+                            console.log(
+                                `Error occured while trying to delete avatar: ${err}`
+                            );
+                            res.status(400).json(err);
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(
+                            `Error occured while trying to save the Profile to DB: ${err}`
+                        );
+                        res.status(400).json(err);
+                    });
+            })
+            .catch((err) => {
+                console.log(
+                    `Error occured while trying to upload Avatar to AWS: ${err}`
+                );
+                res.status(400).json(err);
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(400).json(err);
     }
+}
+
+//helper functions
+
+function isAvatarValid(info) {
+    return (
+        info && info.size < 2 * 1024 * 1024 && info.mimetype === "image/jpeg"
+    );
 }

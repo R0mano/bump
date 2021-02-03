@@ -42,11 +42,13 @@ function changeAvatar(formData, profileId) {
     console.log(...formData, " formData inside profileService");
     return fetch(`${BASE_URL}/update-avatar/${profileId}`, {
         method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({messaage: 'hello'}) ,
+        body: formData,
     }).then((res) => {
         if (res.ok) {
             return res.json();
         }
-    });
+        throw new Error("Oops! It looks like something went wrong while uploading the avatar. Please try again in a minute.");
+    })
+    // .then(json => console.log(json))
+    .catch(err => console.error(err));;
 }

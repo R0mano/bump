@@ -14,8 +14,8 @@ function ContactListItem(props) {
   return (
     <div className='contact-item'>
       <div className='ContactItem contact-item' onClick={handleClick}>
-      <div class="card">
-        <div class="card-body">
+      <div className="card">
+        <div className="card-body">
           <h4>{props.contact.username} &nbsp;&nbsp;|&nbsp;&nbsp;<span><small>{props.contact.bio}</small></span></h4>
         </div>
       </div>

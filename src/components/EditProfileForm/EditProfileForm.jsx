@@ -69,6 +69,7 @@ const EditProfileForm = (props) => {
                             type="text"
                             className="form-control"
                             placeholder="Name"
+                            autoComplete="off"
                             value={newProfile.username}
                             name="username"
                             onChange={handleChange}

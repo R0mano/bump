@@ -31,7 +31,11 @@ const profileSchema = new Schema(
             type: String,
             maxlength: 100,
         },
-        avatar: String,
+        avatar: {
+            type: String,
+            required: true,
+            default: "ibump-default-profile-avatar.svg",
+        },
         contacts: [
             // {
                 {

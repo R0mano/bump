@@ -173,6 +173,7 @@ function App() {
                             <ProfilePage
                                 history={history}
                                 handleLogout={handleLogout}
+                                handleProfileUpdate={handleProfileUpdate}
                                 user={user}
                                 profile={profile}
                             />
