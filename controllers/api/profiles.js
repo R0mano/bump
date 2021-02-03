@@ -83,9 +83,7 @@ async function updateProfileInfo(req, res) {
 async function updateAvatar(req, res) {
     const profileId = req.params.profileId;
     const avatarPath = req.file.path;
-    console.log(req.body, " req.body");
-    console.log(req.params, " req.params");
-    console.log(req.file, " req.file");
+
     try {
         const profile = await Profile.findById(profileId);
         const avatarId = profile.avatar.split(".com/")[1];
@@ -93,21 +91,15 @@ async function updateAvatar(req, res) {
         awsService
             .createNewAvatar(avatarPath)
             .then(async (data) => {
-                console.log(data, " data returned inside profile.js Controler");
                 fs.unlinkSync(avatarPath); // Empty temp folder
                 profile.avatar = data.Location;
                 await profile.populate("contacts").execPopulate();
                 profile
                     .save()
                     .then((profile) => {
-                        console.log("Profile Avatar uploaded successfully");
-                        console.log(
-                            profile,
-                            " Updated Profile with Avatar. Ready to be sent back."
-                        );
                         res.status(200).json(profile);
                     })
-                    .then((json) => {
+                    .then(() => {
                         try {
                             if (avatarId) {
                                 awsService.deleteAvatar(avatarId);
@@ -142,6 +134,6 @@ async function updateAvatar(req, res) {
 
 function isAvatarValid(info) {
     return (
-        info && info.size < 2 * 1024 * 1024 && info.mimetype === "image/jpeg"
+        info && info.size < 2 * 1024 * 1024 && info.mimetype === "image/jpeg" || info.mimetype === "image/png"
     );
 }

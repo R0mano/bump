@@ -29,21 +29,22 @@ const UpdateProfilePictureForm = (props) => {
     const onFileSubmit = async (e) => {
         e.preventDefault();
         props.togglePictureForm();
-        console.log(file, " file");
-        console.log(fileName, " fileName");
+
         const formData = new FormData();
         formData.append("avatar", file);
         setFile("");
         setFileName("Choose File");
-        // console.log(...formData, " formData");
+
         try {
             const updatedProfile = await profileService.changeAvatar(
                 formData,
                 props.profileId
             );
+
             props.handleProfileUpdate(updatedProfile);
+
         } catch (err) {
-            setMessage('Something went worong while uploading the avatar. Please try again in a minute.')
+            setMessage('Something went wrong while uploading the avatar. Please try again in a minute.')
         }
     };
 

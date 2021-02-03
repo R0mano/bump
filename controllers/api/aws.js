@@ -13,7 +13,6 @@ aws.config.setPromisesDependency();
 aws.config.update({
     accessKeyId: process.env.ACCESSKEYID,
     secretAccessKey: process.env.SECRETACCESSKEY,
-    //   region: process.env.REGION
 });
 
 const s3 = new aws.S3();
@@ -38,8 +37,6 @@ function deleteAvatar(avatarId) {
     s3.deleteObject(params, (err, data) => {
         if(err) {
             console.log(err)
-        } else {
-            console.log(data, ' Avatar deleted successfully! This is the response from s3.deleteObject()')
         }
     });
 }
@@ -56,19 +53,6 @@ function S3Upload(params) {
             } else {
                 console.log(data, " s3.upload() response data");
                 resolve(data);
-                // fs.unlinkSync(req.file.path); // Empty temp folder
-                // const locationUrl = data.Location;
-                // const profile = Profile.findById(req.params.profileId)
-                //     // { ...req.body, avatar: locationUrl };
-                //     profile.avatar = locationUrl;
-                //     profile
-                //     .save()
-                //     .then((profile) => {
-                //         res.json({ message: "Profile Avatar uploaded successfully", profile });
-                //     })
-                //     .catch((err) => {
-                //         console.log("Error occured while trying to save to DB");
-                //     });
             }
         });
     });

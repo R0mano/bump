@@ -12,6 +12,5 @@ router.get("/:userId", profilesCtrl.index);
 router.post("/", profilesCtrl.createContact);
 router.put("/update-profile/:profileId", profilesCtrl.updateProfileInfo);
 router.put("/update-avatar/:profileId", upload.single('avatar'), profilesCtrl.updateAvatar);
-// router.put("/update-avatar/:profileId", profilesCtrl.updateAvatar);
 
 module.exports = router;
