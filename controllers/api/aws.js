@@ -7,6 +7,8 @@ module.exports = {
     deleteAvatar,
 };
 
+// UPLOAD IMG FILES TO AWS S3 BUCKET
+
 const BUCKET_NAME = process.env.BUCKET_NAME;
 
 aws.config.setPromisesDependency();

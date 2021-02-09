@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import profileService from "../../utils/profileService";
 import "./UpdateProfilePictureForm.css";
 
@@ -49,9 +49,9 @@ const UpdateProfilePictureForm = (props) => {
     };
 
     return (
-        <div className={visibility}>
-            <p>This is the UpdateProfilePictureForm</p>
-            <form onSubmit={onFileSubmit} enctype="multipart/form-data">
+        <div className=''>
+            <p>{message}</p>
+            <form className={"form-inline update-avatar-form " + visibility} onSubmit={onFileSubmit} encType="multipart/form-data">
                 <input type="file" name="avatar" onChange={onFileChange} />
                 <button
                     type="submit"

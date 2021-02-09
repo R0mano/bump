@@ -7,7 +7,6 @@ const EditProfileForm = (props) => {
     const [newProfile, setNewProfile] = useState({
         username: "",
         bio: "",
-        avatar: "",
     });
 
     useEffect(() => {
@@ -15,7 +14,6 @@ const EditProfileForm = (props) => {
             setNewProfile({
                 username: props.profile.username,
                 bio: props.profile.bio,
-                avatar: "",
             });
         }
     }, [props.profile]);
@@ -49,7 +47,7 @@ const EditProfileForm = (props) => {
     const isFormInvalid = () => {
         return !(
             newProfile.username &&
-            newProfile.username !== props.profile.username
+            (newProfile.username !== props.profile.username || newProfile.bio !== props.profile.bio)
         );
     };
 
@@ -86,6 +84,7 @@ const EditProfileForm = (props) => {
                             placeholder="A little bit about yourself"
                             value={newProfile.bio}
                             name="bio"
+                            autoComplete='off'
                             onChange={handleChange}
                         />
                     </div>

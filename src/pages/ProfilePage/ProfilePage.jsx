@@ -15,7 +15,8 @@ function ProfilePage(props) {
 
   let page = props.profile ?
   <div>
-    <p><Link exact to='/edit-profile'>Edit profile</Link> | <span className="change-avatar" onClick={togglePictureForm}>Change Avater</span></p>
+    <h1>{props.profile.username}</h1>
+    <p><Link exact="true" to='/edit-profile'>Edit profile</Link> | <span className="change-avatar" onClick={togglePictureForm}>Change Avater</span></p>
 
     <UpdateProfilePictureForm visible={pictureFormVisible} handleProfileUpdate={props.handleProfileUpdate} togglePictureForm={togglePictureForm} profileId={props.profile._id} history={props.history}/>
 
@@ -32,7 +33,6 @@ function ProfilePage(props) {
   return(
     <div className='ProfilePage' >
       <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile}/>
-      <h1>Profile</h1>
       {page}
     </div>
   )

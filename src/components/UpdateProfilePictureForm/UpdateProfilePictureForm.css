@@ -1,7 +1,32 @@
-.visible{
-    visibility: visible;
+.hidden{
+    /* visibility: visible; */
+    /* transform: translateY(100%); */
+    
+    
+  /* background: #fff; */
+  /* overflow: hidden; */
+  /* color: #000;    */
+  /* line-height: 50px; */
+
+  transition: all .3s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(0);
+  height: 0;
+  z-index: -100;
+  /* display: none; */
   }
   
-.hidden{
-  visibility: hidden;
+  .visible{
+    /* overflow: hidden; */
+  /* color: #000;    */
+  /* line-height: 50px; */
+
+  transition: all .3s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(1);
+    /* visibility: hidden; */
+}
+
+.update-avatar-form{
+  justify-content: center;
 }

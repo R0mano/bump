@@ -43,7 +43,9 @@ async function createContact(req, res) {
                 ? profile.contacts.every((contact) => {
                       return (
                           contact._id.toString() !==
-                          newlyCreatedContact._id.toString()
+                              newlyCreatedContact._id.toString() &&
+                          newlyCreatedContact._id.toString() !==
+                              profile._id.toString
                       );
                   })
                 : true;
@@ -124,9 +126,9 @@ async function updateAvatar(req, res) {
                 );
                 res.status(400).json(err);
             });
-        } catch (err) {
-            console.log(err);
-            res.status(400).json(err);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
     }
 }
 
@@ -134,6 +136,9 @@ async function updateAvatar(req, res) {
 
 function isAvatarValid(info) {
     return (
-        info && info.size < 2 * 1024 * 1024 && info.mimetype === "image/jpeg" || info.mimetype === "image/png"
+        (info &&
+            info.size < 2 * 1024 * 1024 &&
+            info.mimetype === "image/jpeg") ||
+        info.mimetype === "image/png"
     );
 }
