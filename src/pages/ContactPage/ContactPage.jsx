@@ -13,8 +13,10 @@ function ContactPage(props) {
       <NavBar handleLogout={props.handleLogout} user={props.user} profile={props.profile}/>
       <h1>Contacts</h1>
       <div className='contact-wrapper' >
-      <AddContactForm handleAddContact={props.handleAddContact} profile={props.profile}/>
-      <ContactList profile={props.profile} contacts={props.contacts} handleContactSelect={props.handleContactSelect}/>
+        <AddContactForm handleAddContact={props.handleAddContact} profile={props.profile}/>
+        <div className='contact-list-wrapper'>
+          <ContactList profile={props.profile} contacts={props.contacts} handleContactSelect={props.handleContactSelect}/>
+        </div>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ function ContactList(props) {
 
     if (props.profile) {
         contactList = (
-            <div>
+            <div  className='Contact-list'>
                 {props.profile.contacts.map((contact) => (
                     <ContactListItem
                         contact={contact}

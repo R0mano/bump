@@ -42,6 +42,7 @@ const profileSchema = new Schema(
                     type: Schema.Types.ObjectId,
                     ref: "Profile",
                 },
+                // Implement a Date property at which the contact was added
                 // isApproved: {
                 //   type: Boolean,
                 //   required: true,

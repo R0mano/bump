@@ -2,10 +2,20 @@
   color: white;
 }
 
+.contact-list-wrapper{
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  max-height: calc(100vh - 250px);
+  min-height: 10vh; 
+}
+
 @media only screen and (min-width: 800px) {
 
 .contact-wrapper{
   max-width: 60%;
   margin: 0 auto;
 }
+
+
 }

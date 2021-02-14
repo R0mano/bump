@@ -36,8 +36,6 @@ async function createContact(req, res) {
             message = "No match found with this username";
         }
         const profile = await Profile.findById(req.body.profileId)
-            .populate("contacts")
-            .exec();
         const isNewContact =
             profile.contacts.length && newlyCreatedContact
                 ? profile.contacts.every((contact) => {
@@ -50,11 +48,12 @@ async function createContact(req, res) {
                   })
                 : true;
         if (newlyCreatedContact && isNewContact) {
-            profile.contacts.push(newlyCreatedContact);
+            profile.contacts.unshift(newlyCreatedContact);
         } else if (!isNewContact) {
             message = "This contact is already in your list";
         }
         await profile.populate("contacts").execPopulate();
+        console.log(profile.contacts, ' profile.contacts retrieved and sorted')
         profile.save();
         res.status(200).json({ profile, message });
     } catch (err) {
