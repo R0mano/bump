@@ -4,7 +4,18 @@ import MessageHistory from "../../components/MessageHistory/MessageHistory";
 import NewMessageForm from "../../components/NewMessageForm/NewMessageForm";
 import "./ChatPage.css";
 
-export default function ChatPage(props) {
+function ChatPage(props) {
+    let header = props.recipient ? (
+        <div className="chat-page-header">
+            <div>
+                <img src={props.recipient.avatar} alt="recipent-avatar" />
+            </div>
+            <p>{props.recipient.username}</p>
+        </div>
+    ) : (
+        <h1>No contact selected</h1>
+    );
+
     let page = props.profile ? (
         <div className="ChatPage">
             <NavBar
@@ -12,20 +23,17 @@ export default function ChatPage(props) {
                 user={props.user}
                 profile={props.profile}
             />
-            <h1>
-                Chat
-                {props.recipient ? ` with ${props.recipient}` : " - No contact selected"}
-            </h1>
             <div className="chat-wrapper">
+                {header}
                 {props.profile && props.messages.chat.length ? (
                     <MessageHistory
                         profile={props.profile}
                         messages={props.messages}
                         handleMessageSubmit={props.handleMessageSubmit}
-                        recipient={props.recipient}
+                        recipient={props.recipient.username}
                     />
                 ) : (
-                    <div className="chat-wrapper">No messages yet</div>
+                    <div className="">No messages yet</div>
                 )}
 
                 <NewMessageForm
@@ -43,3 +51,5 @@ export default function ChatPage(props) {
     );
     return <div>{page}</div>;
 }
+
+export default ChatPage;

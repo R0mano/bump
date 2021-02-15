@@ -8,7 +8,7 @@ function MessageHistoryItem(props) {
   let aMessage = props.recipient.length ?
 
  <div className={props.message.from === props.profile._id ? 'me' : 'you'}>
-  <div className='message' >{props.message.body}</div >
+  <div className='message' ><span>{props.message.body}</span></div >
 </div>
   :
   <div>Select a contact</div>

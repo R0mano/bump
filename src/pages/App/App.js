@@ -106,7 +106,7 @@ function App() {
             ...messages,
             ...{ to: contact._id },
         });
-        setRecipient(contact.username);
+        setRecipient({username: contact.username, avatar: contact.avatar});
         history.push("/chat");
     };
 

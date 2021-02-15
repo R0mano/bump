@@ -15,7 +15,7 @@ function signup(user) {
   })
   .then(({token}) => {
     tokenService.setToken(token);
-  });
+  })
 }
 
 function getUser() {

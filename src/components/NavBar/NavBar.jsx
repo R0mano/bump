@@ -11,10 +11,10 @@ function NavBar(props) {
   <div className='NavBar' >
   <nav className="navbar navbar-expand ">
   <div  id="navbarNavAltMarkup">
-    <div className="navbar-nav">
-      <NavLink exact to='/profile' className="nav-link link" href="#">Profile <span className="sr-only">(current)</span></NavLink>
-      <NavLink exact to='/chat' className="nav-link link" href="#">Chat</NavLink>
-      <NavLink exact to='/contacts' className="nav-link link" href="#">Contacts</NavLink>
+    <div className="navbar-nav navbar-nav-links">
+      <NavLink exact to='/profile' id='profile-icon-link' className="nav-link link icon-link" href="#"><span><div id='profile-icon'><img id='profile-icon-img' src={props.profile.avatar} alt="profile"/></div></span> <span className="sr-only">(current)</span></NavLink>
+      <NavLink exact to='/chat' className="nav-link link icon-link" href="#"><span><img className='navbar-icon' src="chat-icon.svg" alt="chat"/></span></NavLink>
+      <NavLink exact to='/contacts' className="nav-link link icon-link" href="#"><span><img className='navbar-icon' src="contacts-icon.svg" alt="contacts"/></span></NavLink>
     </div>
   </div>
   <div className="navbar collapse navbar-collapse right">

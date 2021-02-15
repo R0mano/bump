@@ -1,7 +1,6 @@
 export default {
     getProfile,
     addNewContact,
-    // getContacts,
     updateProfile,
     changeAvatar,
 };
@@ -19,11 +18,6 @@ function addNewContact(contact) {
         body: JSON.stringify(contact),
     }).then((res) => res.json());
 }
-
-// function getContacts(profileId) {
-//   return fetch(`${BASE_URL}/contacts/${profileId}`)
-//   .then(res => res.json());
-// }
 
 function updateProfile(newProfile, profileId) {
     return fetch(`${BASE_URL}/update-profile/${profileId}`, {

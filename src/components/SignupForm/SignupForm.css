@@ -5,19 +5,21 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
 }
 
-h3{
+.SignupForm span{
   color: white;
 }
 
-label{
-  color:white!important;
-  /* display: flex;
-  flex-direction: row; */
+.SignupForm h3{
+  color: white;
 }
-input{
+
+.SignupForm label{
+  color:white!important;
+}
+
+.SignupForm input{
   display: flex;
   flex-direction: row;
 }

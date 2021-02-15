@@ -3,8 +3,38 @@
   color: white;
 }
 
-a{
-  color: white;
+.navbar-nav-links{
+  align-items: center;
+  margin-left: 0;
+}
+
+.NavBar img {
+  height: auto;
+  width: 25px;
+}
+
+.navbar-icon {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+#profile-icon-link{
+  margin-left: 0;
+}
+
+#profile-icon{
+  border: 2px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profile-icon-img{
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.icon-link{
+  margin: 0 10px;
 }
 
 a:hover{

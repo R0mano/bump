@@ -14,26 +14,31 @@ async function login(req, res) {
         const user = await User.findOne({ email: req.body.email });
         console.log(user, " user");
         if (!user) return res.status(401).json({ err: "Bad Credentials" });
-                user.comparePassword(req.body.pw, (err, isMatch) => {
-                    if (isMatch) {
-                        const token = createJWT(user);
-                        return res.status(200).json({ token });
-                    } else {
-                        return res.status(401).json({ err: "Bad Credentials" });
-                    }
-                });
+        user.comparePassword(req.body.pw, (err, isMatch) => {
+            if (isMatch) {
+                const token = createJWT(user);
+                return res.status(200).json({ token });
+            } else {
+                return res.status(401).json({ err: "Bad Credentials" });
+            }
+        });
     } catch (err) {
         res.status(400).json(err);
     }
 }
 
 async function signup(req, res) {
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password,
-    });
-
     try {
+        let dob = new Date(req.body.dob).toDateString();
+        if (dob > dobChecker()) {
+            throw new Error("You must be 18 years old or older to sign up.");
+        }
+
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password,
+        });
+
         await user.save(async function (err) {
             if (err) {
                 console.log(err);
@@ -61,6 +66,12 @@ async function signup(req, res) {
 }
 
 //Helper function
+function dobChecker() {
+    return new Date(
+        new Date().setFullYear(new Date().getFullYear() - 18)
+    ).toDateString();
+}
+
 function createJWT(user) {
     return jwt.sign({ user }, SECRET, { expiresIn: "24h" });
 }
