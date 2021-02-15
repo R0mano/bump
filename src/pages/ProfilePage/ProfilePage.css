@@ -13,6 +13,7 @@
     overflow: hidden;
     border-radius: 50%;
     margin: 0 auto;
+    border: 2px solid white;
 }
 
 .profile-picture img {

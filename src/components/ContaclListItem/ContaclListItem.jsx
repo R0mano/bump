@@ -2,15 +2,12 @@ import React from 'react';
 import "./ContaclListItem.css";
 
 
-
-export default ContactListItem;
-
 function ContactListItem(props) {
-
+  
   function handleClick() {
     props.handleContactSelect(props.contact);
   }
-
+  
   return (
     <div className='contact-item' onClick={handleClick}>
       
@@ -25,7 +22,7 @@ function ContactListItem(props) {
         <div className="col-10">
           <div className="card-body">
             <h5 className="card-title">{props.contact.username}</h5>
-            <p className="card-text">{props.contact.bio}</p>
+            <p className='card-text'>{props.contact.bio}</p>
           </div>
         </div>
       </div>
@@ -33,6 +30,8 @@ function ContactListItem(props) {
 
     </div>
 
-    
-  )
+
+)
 } 
+
+export default ContactListItem;

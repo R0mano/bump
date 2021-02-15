@@ -11,7 +11,6 @@ const EditProfilePage = (props) => {
 
     return (
         <div className="EditProfilePage ">
-            <h1>This is Profile Edit Page</h1>
             <EditProfileForm
                 handleProfileUpdate={props.handleProfileUpdate}
                 updateMessage={updateMessage}

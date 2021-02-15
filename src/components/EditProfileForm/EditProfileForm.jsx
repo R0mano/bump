@@ -54,7 +54,7 @@ const EditProfileForm = (props) => {
     return (
         <div className="EditProfileForm">
             <header className="header-footer header">
-                <h3>Update Profile</h3>
+                <h3>Edit Profile</h3>
             </header>
             <form className="form-horizontal" onSubmit={handleSubmit}>
                 <div className="form-group row form-block">
@@ -93,13 +93,13 @@ const EditProfileForm = (props) => {
                     <div className="col-sm-12 text-center">
                         <button
                             type="submit"
-                            className="btn btn-default"
+                            className="btn btn-outline-success"
                             disabled={isFormInvalid()}
-                        >
-                            <span>Update Profile</span>
+                        >Update Profile
+                            <span></span>
                         </button>
                         &nbsp;&nbsp;
-                        <Link to="/profile">Cancel</Link>
+                        <Link className='btn btn-outline-warning' to="/profile">Cancel</Link>
                     </div>
                 </div>
             </form>
