@@ -9,7 +9,7 @@ module.exports = {
 
 // UPLOAD IMG FILES TO AWS S3 BUCKET
 
-const BUCKET_NAME = process.env.BUCKET_NAME;
+// const BUCKET_NAME = process.env.BUCKET_NAME;
 
 aws.config.setPromisesDependency();
 aws.config.update({
@@ -23,7 +23,7 @@ function createNewAvatar(avatarPath) {
     const avatarId = uniqid();
     var params = {
         ACL: "public-read",
-        Bucket: BUCKET_NAME,
+        Bucket: "ibumpbucket",
         Body: fs.createReadStream(avatarPath),
         Key: `profileAvatar/${avatarId}`,
     };
@@ -33,7 +33,7 @@ function createNewAvatar(avatarPath) {
 
 function deleteAvatar(avatarId) {
     const params = {
-        Bucket: BUCKET_NAME,
+        Bucket: "ibumpbucket",
         Key: avatarId,
     };
     s3.deleteObject(params, (err, data) => {
