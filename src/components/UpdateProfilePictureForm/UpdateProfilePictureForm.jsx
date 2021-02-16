@@ -40,10 +40,11 @@ const UpdateProfilePictureForm = (props) => {
                 formData,
                 props.profileId
             );
-
+            console.log(updatedProfile, ' updatedProfile')
             props.handleProfileUpdate(updatedProfile);
 
         } catch (err) {
+            console.log('Error while updating avatar:', err)
             setMessage('Something went wrong while uploading the avatar. Please try again in a minute.')
         }
     };

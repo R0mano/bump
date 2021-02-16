@@ -44,12 +44,12 @@ function App() {
     useEffect(() => {
         if (IsReadyForSocket) {
             //request messages for profileId
-            console.log(socket, ' socket io() before connect()')
+            // console.log(socket, ' socket io() before connect()')
             socket.connect();
-            console.log(socket, ' socket io() after connect()')
-            console.log('trying to retrieve messages for ' + IsReadyForSocket.profileId)
+            // console.log(socket, ' socket io() after connect()')
+            // console.log('trying to retrieve messages for ' + IsReadyForSocket.profileId)
             socket.emit('retrieve-messages', {profileId: IsReadyForSocket.profileId});
-            console.log('retrieve messages request sent')
+            // console.log('retrieve messages request sent')
 
             // Receiving messages
             socket.on("init", (msg) => {

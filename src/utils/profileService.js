@@ -41,7 +41,7 @@ function changeAvatar(formData, profileId) {
         if (res.ok) {
             return res.json();
         }
-        throw new Error("Oops! It looks like something went wrong while uploading the avatar. Please try again in a minute.");
+        // throw new Error("Oops! It looks like something went wrong while uploading the avatar. Please try again in a minute.");
     })
     // .then(json => console.log(json))
     .catch(err => console.error(err));;
