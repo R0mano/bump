@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import profileService from "../../utils/profileService";
 import "./UpdateProfilePictureForm.css";
 
@@ -8,6 +8,13 @@ const UpdateProfilePictureForm = (props) => {
     const [message, setMessage] = useState("");
 
     const visibility = props.visible ? "visible" : "hidden";
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessage("")
+        }, 5000)
+        return () => clearTimeout()
+    }, [message])
 
     const onFileChange = (e) => {
         if (e.target.files.length) {
@@ -40,8 +47,11 @@ const UpdateProfilePictureForm = (props) => {
                 formData,
                 props.profileId
             );
-            console.log(updatedProfile, ' updatedProfile')
-            props.handleProfileUpdate(updatedProfile);
+            if (updatedProfile) {
+                props.handleProfileUpdate(updatedProfile);
+            } else {
+                setMessage('Something went wrong while uploading the avatar. Please try again in a few minute.')
+            }
 
         } catch (err) {
             console.log('Error while updating avatar:', err)
@@ -52,15 +62,16 @@ const UpdateProfilePictureForm = (props) => {
     return (
         <div className=''>
             <p>{message}</p>
-            <form className={"form-inline update-avatar-form " + visibility} onSubmit={onFileSubmit} encType="multipart/form-data">
+            <form id="update-avatar" className={`form-inline update-avatar-form ${visibility}`} onSubmit={onFileSubmit} encType="multipart/form-data">
                 <input type="file" name="avatar" onChange={onFileChange} />
                 <button
                     type="submit"
                     disabled={isAvatarValid()}
                     className="btn btn-success"
-                >
+                    >
                     Confirm
                 </button>
+                {/* <small>jpeg or png files. Max size 2Mb</small> */}
             </form>
         </div>
     );

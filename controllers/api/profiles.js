@@ -35,7 +35,7 @@ async function createContact(req, res) {
         if (!newlyCreatedContact) {
             message = "No match found with this username";
         }
-        const profile = await Profile.findById(req.body.profileId)
+        const profile = await Profile.findById(req.body.profileId);
         const isNewContact =
             profile.contacts.length && newlyCreatedContact
                 ? profile.contacts.every((contact) => {
@@ -53,7 +53,7 @@ async function createContact(req, res) {
             message = "This contact is already in your list";
         }
         await profile.populate("contacts").execPopulate();
-        console.log(profile.contacts, ' profile.contacts retrieved and sorted')
+        console.log(profile.contacts, " profile.contacts retrieved and sorted");
         profile.save();
         res.status(200).json({ profile, message });
     } catch (err) {
@@ -88,7 +88,12 @@ async function updateAvatar(req, res) {
     try {
         const profile = await Profile.findById(profileId);
         const avatarId = profile.avatar.split(".com/")[1];
-
+        console.log(req.file, ' req.file')
+        if (!isAvatarValid(req.file)) {
+            throw new Error(
+                "Error while uploading: The file is too large or the format is not supported"
+            );
+        }
         awsService
             .createNewAvatar(avatarPath)
             .then(async (data) => {

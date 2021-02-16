@@ -38,10 +38,10 @@ function changeAvatar(formData, profileId) {
         method: "PUT",
         body: formData,
     }).then((res) => {
-        if (res.ok) {
+        if (res.status === 200) {
             return res.json();
         }
-        // throw new Error("Oops! It looks like something went wrong while uploading the avatar. Please try again in a minute.");
+        // throw new Error(`Oops! It looks like something went wrong while uploading the avatar. Please try again in a minute. ${res.json()}`);
     })
     // .then(json => console.log(json))
     .catch(err => console.error(err));;
