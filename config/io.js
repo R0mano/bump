@@ -7,7 +7,7 @@ const users = {};
 console.log("Connected to socket.io()");
 
 io.on("connection", (socket) => {
-    // console.log("socket connected...");
+    console.log("socket connected...");
     // console.log(users, " socket.io {users}");
 
     // profileId = socket.handshake.query.profileId;
@@ -24,6 +24,7 @@ io.on("connection", (socket) => {
                 socket.emit("init", msg);
                 console.log(`${msg}, <------- ${msg.length} messages retrieved`)
             });
+        });
         socket.on("message", async (msg) => {
             const newMessage = await Message.create(msg);
             socket.broadcast.emit("push", newMessage);
@@ -32,7 +33,6 @@ io.on("connection", (socket) => {
             delete users[socket.id];
             io.emit("disconnected", socket.id);
         });
-    });
 });
 
 module.exports = io;
