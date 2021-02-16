@@ -23,7 +23,7 @@ function App() {
         to: "",
         body: "",
     });
-    const [recipient, setRecipient] = useState("");
+    const [recipient, setRecipient] = useState({username: "", avatar: ""});
     const history = useHistory();
 
     useEffect(() => {
@@ -44,10 +44,13 @@ function App() {
     useEffect(() => {
         if (IsReadyForSocket) {
             //request messages for profileId
-            socket.emit('retrieve messages', {profileId: IsReadyForSocket.profileId});
+            console.log('trying to retrieve messages')
+            socket.emit('retrieve-messages', {profileId: IsReadyForSocket.profileId});
+            console.log('retrieve messages request sent')
 
             // Receiving messages
             socket.on("init", (msg) => {
+                console.log('socket.on init')
                 setMessages({ chat: [...msg] });
             });
 
@@ -138,8 +141,8 @@ function App() {
             to: "",
             body: "",
         });
-        setRecipient("");
-        socket.close();
+        setRecipient({username: "", avatar: ""});
+        // socket.close();
     };
 
     return (

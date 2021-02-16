@@ -12,7 +12,8 @@ io.on("connection", (socket) => {
 
     // profileId = socket.handshake.query.profileId;
 
-    socket.on("retrieve messages", async (query) => {
+    socket.on("retrieve-messages", async (query) => {
+        console.log('retrieving messages....')
         Message.find({ $or: [{ from: query.profileId }, { to: query.profileId }] })
             .sort({ createdAt: -1 })
             .limit(500)
@@ -21,7 +22,7 @@ io.on("connection", (socket) => {
                     console.log(`Error in io.js. ${err}`);
                 }
                 socket.emit("init", msg);
-                // console.log(`${msg}, <------- ${msg.length} messages retrieved`)
+                console.log(`${msg}, <------- ${msg.length} messages retrieved`)
             });
         socket.on("message", async (msg) => {
             const newMessage = await Message.create(msg);

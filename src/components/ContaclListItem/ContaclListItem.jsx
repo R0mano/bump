@@ -5,6 +5,7 @@ import "./ContaclListItem.css";
 function ContactListItem(props) {
   
   function handleClick() {
+    console.log(props.contact, ' props.contact')
     props.handleContactSelect(props.contact);
   }
   
